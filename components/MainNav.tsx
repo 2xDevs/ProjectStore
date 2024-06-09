@@ -13,7 +13,7 @@ export function MainNav() {
 
     return (
         <div className="mr-4 flex">
-            <Link href={""} className="mr-6 flex items-center space-x-1">
+            <Link href={"/"} className="mr-6 flex items-center space-x-1">
                 <Icons.logo className="h-12 w-12" />
                 <span className="text-2xl font-bold ">
                     {siteConfig.name}

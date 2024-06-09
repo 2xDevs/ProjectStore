@@ -13,8 +13,8 @@ export default function Home() {
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index}>
-            <div className="flex aspect-square h-full w-full justify-center p-2">
-                  <img src={"https://picsum.photos/200"} className="h-full w-full rounded-lg" alt="" />
+            <div className="flex aspect-video h-full w-full justify-center p-2">
+                  <img src={"https://picsum.photos/1920/1080"} className="h-full w-full rounded-lg" alt="" />
             </div>
           </CarouselItem>
         ))}

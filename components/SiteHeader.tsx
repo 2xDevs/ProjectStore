@@ -7,6 +7,7 @@ import { MainNav } from "@/components/MainNav"
 import { MobileNav } from "@/components/MobileNav"
 import { ModeToggle } from "@/components/ModeToggle"
 import { buttonVariants } from "@/components/ui/button"
+import UserLoggedIn from "./UserLoggedIn"
 
 export function SiteHeader() {
   return (
@@ -35,7 +36,7 @@ export function SiteHeader() {
                 <span className="sr-only">GitHub</span>
               </div>
             </Link> */}
-            
+            <UserLoggedIn />
             <ModeToggle />
           </nav>
         </div>
