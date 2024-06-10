@@ -11,7 +11,7 @@ export default function UserLoggedIn () {
         {session.data?.user ?
             <>
                 <Link href="/profile">
-                    <Image className="rounded-full h-10" src={session.data?.user.image || ""} alt="profile" />
+                    <Image className="rounded-full h-10" width={35} height={35} src={session.data?.user.image!} alt="profile" />
                 </Link>
                 <button className="px-2 py-1 mx-3 border rounded-sm border-white" onClick={async () => {
                     await signOut()

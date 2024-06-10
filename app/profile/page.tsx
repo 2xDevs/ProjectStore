@@ -17,6 +17,8 @@ export default function Profile() {
                     className="rounded-full"
                     src={session.data?.user?.image!}
                     alt="profile"
+                    width={100}
+                    height={100}
                 />
             </div>
             <div>Name: {session.data?.user?.name}</div>
