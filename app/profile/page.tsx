@@ -1,7 +1,6 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { redirect } from "next/navigation";
 
 export default function Profile() {
@@ -13,12 +12,13 @@ export default function Profile() {
         <div className="">
             <div>Profile</div>
             <div>
-                <Image
-                    className="rounded-full"
-                    src={session.data?.user?.image!}
+                <img
+                    className="rounded-full h-52"
+                    src={
+                        session.data?.user?.image ||
+                        "https://res.cloudinary.com/dckbkdfyi/image/upload/f_auto,q_auto/ooisz8enzqbpeetkditn"
+                    }
                     alt="profile"
-                    width={100}
-                    height={100}
                 />
             </div>
             <div>Name: {session.data?.user?.name}</div>

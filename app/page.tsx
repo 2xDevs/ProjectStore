@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import Image from "next/image";
 import  Link  from "next/link";
 import { plugin } from "postcss";
 import React from "react";
@@ -15,7 +14,7 @@ export default function Home() {
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index}>
             <div className="flex aspect-video h-full w-full justify-center p-2">
-                  <Image src="https://picsum.photos/200" fill className="h-full w-full rounded-lg" alt="" />
+                  <img src="https://picsum.photos/200" className="h-full w-full rounded-lg" alt="" />
             </div>
           </CarouselItem>
         ))}
@@ -37,7 +36,7 @@ export default function Home() {
                 <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
                   <span className="sr-only">View Project</span>
                 </Link>
-                <Image
+                <img
                   src={"https://picsum.photos/200"}
                   alt="Project 1"
                   width={500}
@@ -59,7 +58,7 @@ export default function Home() {
                 <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
                   <span className="sr-only">View Project</span>
                 </Link>
-                <Image
+                <img
                   src={"https://picsum.photos/200"}
                   alt="Project 2"
                   width={500}
@@ -81,7 +80,7 @@ export default function Home() {
                 <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
                   <span className="sr-only">View Project</span>
                 </Link>
-                <Image
+                <img
                   src={"https://picsum.photos/200"}
                   alt="Project 3"
                   width={500}
@@ -103,7 +102,7 @@ export default function Home() {
                 <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
                   <span className="sr-only">View Project</span>
                 </Link>
-                <Image
+                <img
                   src={"https://picsum.photos/200"}
                   alt="Project 4"
                   width={500}
@@ -137,7 +136,7 @@ export default function Home() {
                 <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
                   <span className="sr-only">View Project</span>
                 </Link>
-                <Image
+                <img
                   src={"https://picsum.photos/200"}
                   alt="Project 5"
                   width={500}
@@ -159,7 +158,7 @@ export default function Home() {
                 <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
                   <span className="sr-only">View Project</span>
                 </Link>
-                <Image
+                <img
                   src={"https://picsum.photos/200"}
                   alt="Project 6"
                   width={500}
@@ -181,7 +180,7 @@ export default function Home() {
                 <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
                   <span className="sr-only">View Project</span>
                 </Link>
-                <Image
+                <img
                   src={"https://picsum.photos/200"}
                   alt="Project 7"
                   width={500}
@@ -203,7 +202,7 @@ export default function Home() {
                 <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
                   <span className="sr-only">View Project</span>
                 </Link>
-                <Image
+                <img
                   src={"https://picsum.photos/200"}
                   alt="Project 8"
                   width={500}
@@ -253,7 +252,7 @@ function MountainIcon(props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGS
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        fill="none"
+      fill="none"
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
@@ -273,7 +272,7 @@ function MountainIcon(props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGS
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        fill="none"
+      fill="none"
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
@@ -294,7 +293,7 @@ function MountainIcon(props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGS
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        fill="none"
+      fill="none"
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
