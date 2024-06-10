@@ -1,16 +1,17 @@
 "use client"
 
 import { signIn, signOut, useSession } from "next-auth/react"
+import Image from "next/image";
 import Link from "next/link";
 
 
-export default function () {
+export default function UserLoggedIn () {
     const session = useSession();
     return (<div className="flex px-2 py-1 h-10">
         {session.data?.user ?
             <>
                 <Link href="/profile">
-                    <img className="rounded-full h-10" src={session.data?.user.image || ""} alt="profile" />
+                    <Image className="rounded-full h-10" src={session.data?.user.image || ""} alt="profile" />
                 </Link>
                 <button className="px-2 py-1 mx-3 border rounded-sm border-white" onClick={async () => {
                     await signOut()
