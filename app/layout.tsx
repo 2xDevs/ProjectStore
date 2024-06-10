@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Providers } from './providers';
 
-
+export const runtime = 'edge'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
