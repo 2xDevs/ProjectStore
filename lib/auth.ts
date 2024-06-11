@@ -94,12 +94,7 @@ export const authOptions = {
                 });
 
                 if (existingUser) {
-                    return {
-                        id: existingUser.id.toString(),
-                        name: existingUser.name,
-                        email: existingUser.email,
-                        avatar: existingUser.avatar,
-                    };
+                    return true
                 }
 
                 try {
@@ -113,11 +108,7 @@ export const authOptions = {
                         },
                     });
 
-                    return {
-                        id: user.id.toString(),
-                        name: user.name,
-                        email: user.email,
-                    };
+                    return true
                 } catch (e) {
                     console.error(e);
                     return false;
