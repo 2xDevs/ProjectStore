@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 export default function Profile() {
     const session = useSession();
@@ -8,12 +9,14 @@ export default function Profile() {
         <div className="">
             <div>Profile</div>
             <div>
-                <img
+                <Image
                     className="rounded-full h-52"
                     src={
                         session.data?.user?.image ||
                         "https://res.cloudinary.com/dckbkdfyi/image/upload/f_auto,q_auto/ooisz8enzqbpeetkditn"
                     }
+                    height={208}
+                    width={208}
                     alt="profile"
                 />
             </div>
