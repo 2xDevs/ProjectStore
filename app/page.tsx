@@ -13,10 +13,10 @@ export default function Home() {
       <section className="w-full h-screen flex justify-center items-center">
         <Carousel className="w-full max-w-lg">
           <CarouselContent>
-            {Array.from({ length: 5 }).map((_, index) => (
+            {Array.from({ length: 5 }).map((_, index ) => (
               <CarouselItem key={index}>
                 <div className="flex aspect-video h-full w-full justify-center p-2">
-                  <Image src="https://picsum.photos/200" fill className="h-full w-full rounded-lg" alt="" />
+                  <Image src="https://picsum.photos/200" width={100} height={100} className="h-full w-full rounded-lg" alt="Projects" />
                 </div>
               </CarouselItem>
             ))}
