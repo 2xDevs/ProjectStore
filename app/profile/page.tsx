@@ -1,27 +1,54 @@
-"use client";
 
-import { useSession } from "next-auth/react";
-import Image from "next/image";
+
+import { Projects, ProjectsType } from "@/components/Projects";
+import { UserProfile } from "@/components/UserProfile";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { useEffect } from "react";
 
 export default function Profile() {
-    const session = useSession();
+    const UserProjects: ProjectsType = [
+        {
+            image: "https://picsum.photos/200",
+            title: "random",
+            belongsTo: "ML",
+        },
+        {
+            image: "https://picsum.photos/200",
+            title: "random",
+            belongsTo: "ML",
+        },
+        {
+            image: "https://picsum.photos/200",
+            title: "random",
+            belongsTo: "ML",
+        },
+        {
+            image: "https://picsum.photos/200",
+            title: "random",
+            belongsTo: "ML",
+        },
+    ];
     return (
-        <div className="">
-            <div>Profile</div>
-            <div>
-                <Image
-                    className="rounded-full h-52"
-                    src={
-                        session.data?.user?.image ||
-                        "https://res.cloudinary.com/dckbkdfyi/image/upload/f_auto,q_auto/ooisz8enzqbpeetkditn"
-                    }
-                    height={208}
-                    width={208}
-                    alt="profile"
-                />
+        <>
+        
+            <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+                <UserProfile />
+                <Separator className="my-8" />
+                <div className="grid gap-8">
+                    <div>
+                        <div className="flex items-center justify-between">
+                            <h2 className="text-xl font-semibold">
+                                My Projects
+                            </h2>
+                            <Button variant="outline">View All</Button>
+                        </div>
+                        <div className="grid gap-4 mt-4 sm:grid-cols-2 lg:grid-cols-3">
+                            <Projects ProjectsData={UserProjects} />
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>Name: {session.data?.user?.name}</div>
-            <div>Email: {session.data?.user?.email}</div>
-        </div>
+        </>
     );
 }
