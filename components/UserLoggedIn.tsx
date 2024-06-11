@@ -3,13 +3,9 @@
 import {
     CheckIcon,
     LogOut,
-    Mail,
-    MessageSquare,
     Moon,
-    PlusCircle,
     Sun,
     User,
-    UserPlus,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -148,7 +144,6 @@ export default function UserLoggedIn() {
 
                             <DropdownMenuItem
                                 onClick={async () => {
-                                    localStorage.setItem("theme", "System");
                                     await signOut();
                                 }}
                             >
