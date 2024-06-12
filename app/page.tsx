@@ -1,5 +1,4 @@
 import { Projects, ProjectsType } from "@/components/Projects";
-import { Button } from "@/components/ui/button";
 import {
     Carousel,
     CarouselContent,
@@ -13,54 +12,70 @@ import React from "react";
 export default function Home() {
     const LatestProjects: ProjectsType = [
         {
+            id: 1,
             image: "https://picsum.photos/200",
-            title: "random",
-            belongsTo: "ML",
-            price: "1000",
+            title: "Project A",
+            categories: ["Web", "Mobile"],
+            languages: ["React", "JavaScript"],
+            price: 1000,
         },
         {
+            id: 1,
             image: "https://picsum.photos/200",
-            title: "random",
-            belongsTo: "ML",
-            price: "1000",
+            title: "Project B",
+            categories: ["Web", "Desktop"],
+            languages: ["Vue", "TypeScript"],
+            price: 1000,
         },
         {
+            id: 1,
             image: "https://picsum.photos/200",
-            title: "random",
-            belongsTo: "ML",
-            price: "1000",
+            title: "Project C",
+            categories: ["Mobile", "Desktop"],
+            languages: ["Angular", "JavaScript"],
+            price: 1000,
         },
         {
+            id: 1,
             image: "https://picsum.photos/200",
-            title: "random",
-            belongsTo: "ML",
-            price: "1000",
+            title: "Project D",
+            categories: ["Web", "Mobile", "Desktop"],
+            languages: ["React", "TypeScript"],
+            price: 1000,
         },
     ];
     const PopularProjects: ProjectsType = [
         {
+            id: 1,
             image: "https://picsum.photos/200",
-            title: "random",
-            belongsTo: "ML",
-            price: "1000",
+            title: "Project A",
+            categories: ["Web", "Mobile"],
+            languages: ["React", "JavaScript"],
+            price: 1000,
         },
         {
+            id: 1,
             image: "https://picsum.photos/200",
-            title: "random",
-            belongsTo: "ML",
-            price: "1000",
+            title: "Project B",
+            categories: ["Web", "Desktop"],
+            languages: ["Vue", "TypeScript"],
+            price: 1000,
         },
         {
+            id: 1,
             image: "https://picsum.photos/200",
-            title: "random",
-            belongsTo: "ML",
-            price: "1000",
+            title: "Project C",
+            categories: ["Mobile", "Desktop"],
+            languages: ["Angular", "JavaScript"],
+            price: 1000,
         },
         {
+            id: 1,
             image: "https://picsum.photos/200",
-            title: "random",
-            belongsTo: "ML",
-            price: "1000",
+            title: "Project D",
+            categories: ["Web", "Mobile", "Desktop"],
+            languages: ["React", "TypeScript"],
+            price: 1000,
         },
     ];
 
@@ -145,70 +160,3 @@ export default function Home() {
     );
 }
 
-function MountainIcon(
-    props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
-) {
-    return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        >
-            <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
-        </svg>
-    );
-}
-
-function PlusIcon(
-    props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
-) {
-    return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        >
-            <path d="M5 12h14" />
-            <path d="M12 5v14" />
-        </svg>
-    );
-}
-
-function SearchIcon(
-    props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
-) {
-    return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        >
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21-4.3-4.3" />
-        </svg>
-    );
-}
-function Autoplay(arg0: { delay: number; stopOnInteraction: boolean }): any {
-    throw new Error("Function not implemented.");
-}
