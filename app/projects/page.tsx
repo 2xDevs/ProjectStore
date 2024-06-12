@@ -40,8 +40,8 @@ const projects: ProjectsType = [
     },
 ];
 
-export const categories = ["AI", "ML", "NLP", "Web", "App", "DS", "DL"];
-export const languages = [
+const categories = ["AI", "ML", "NLP", "Web", "App", "DS", "DL"];
+const languages = [
     "C",
     "C++",
     "C#",
@@ -64,12 +64,12 @@ export default function Component() {
     const handleToggle = (
         item: string,
         list: string[],
-        setList: React.Dispatch<React.SetStateAction<string[]>>,
+        setList: React.Dispatch<React.SetStateAction<string[]>>
     ) => {
         setList(
             list.includes(item)
                 ? list.filter((i) => i !== item)
-                : [...list, item],
+                : [...list, item]
         );
     };
 
@@ -77,12 +77,12 @@ export default function Component() {
         (project) =>
             (selectedCategories.length === 0 ||
                 selectedCategories.some((category) =>
-                    project.categories.includes(category),
+                    project.categories.includes(category)
                 )) &&
             (selectedLanguages.length === 0 ||
                 selectedLanguages.some((language) =>
-                    project.languages.includes(language),
-                )),
+                    project.languages.includes(language)
+                ))
     );
 
     return (
@@ -114,7 +114,7 @@ export default function Component() {
                             handleToggle(
                                 category,
                                 selectedCategories,
-                                setSelectedCategories,
+                                setSelectedCategories
                             )
                         }
                     />
@@ -126,7 +126,7 @@ export default function Component() {
                             handleToggle(
                                 language,
                                 selectedLanguages,
-                                setSelectedLanguages,
+                                setSelectedLanguages
                             )
                         }
                     />
