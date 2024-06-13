@@ -8,11 +8,11 @@ type Params = {
 export async function GET(req: NextRequest, context: { params: Params }) {
     try {
         const id = Number(context.params.id);
-        const projects = await prisma.project.findUnique({
+        const project = await prisma.project.findUnique({
             where: {
                 id: id,
             },
         });
-        return NextResponse.json({ projects });
+        return NextResponse.json({ project });
     } catch (error) {}
 }
