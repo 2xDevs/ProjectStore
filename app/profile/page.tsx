@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import axios from "axios";
 import { getServerSession } from "next-auth";
-import { useSession } from "next-auth/react";
 
 const getUserProjects = async () => {
     const session = await getServerSession();
@@ -13,11 +12,15 @@ const getUserProjects = async () => {
         { email: session?.user?.email },
     );
     console.log(response.data.projects);
+    return response.data.projects;
 };
 
 export default async function Profile() {
-    const UserProjects = await getUserProjects();
-    
+    const UserProjects: ProjectsType = await getUserProjects();
+    UserProjects.map((project) => {
+        project.price = undefined;
+    });
+
     return (
         <>
             <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6">
