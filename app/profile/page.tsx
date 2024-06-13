@@ -2,38 +2,22 @@ import { Projects, ProjectsType } from "@/components/Projects";
 import { UserProfile } from "@/components/UserProfile";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import axios from "axios";
+import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react";
 
-export default function Profile() {
-    const UserProjects: ProjectsType = [
-        {
-            id: 1,
-            image: "https://picsum.photos/200",
-            title: "Project A",
-            categories: ["Web", "Mobile"],
-            languages: ["React", "JavaScript"],
-        },
-        {
-            id: 1,
-            image: "https://picsum.photos/200",
-            title: "Project B",
-            categories: ["Web", "Desktop"],
-            languages: ["Vue", "TypeScript"],
-        },
-        {
-            id: 1,
-            image: "https://picsum.photos/200",
-            title: "Project C",
-            categories: ["Mobile", "Desktop"],
-            languages: ["Angular", "JavaScript"],
-        },
-        {
-            id: 1,
-            image: "https://picsum.photos/200",
-            title: "Project D",
-            categories: ["Web", "Mobile", "Desktop"],
-            languages: ["React", "TypeScript"],
-        },
-    ];
+const getUserProjects = async () => {
+    const session = await getServerSession();
+    const response = await axios.post(
+        "http://localhost:3000/api/projects/myprojects",
+        { email: session?.user?.email },
+    );
+    console.log(response.data.projects);
+};
+
+export default async function Profile() {
+    const UserProjects = await getUserProjects();
+    
     return (
         <>
             <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6">
