@@ -6,79 +6,18 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
+import axios from "axios";
 import Image from "next/image";
 import React from "react";
 
-export default function Home() {
-    const LatestProjects: ProjectsType = [
-        {
-            id: 1,
-            image: "https://picsum.photos/200",
-            title: "Project A",
-            categories: ["Web", "Mobile"],
-            languages: ["React", "JavaScript"],
-            price: 1000,
-        },
-        {
-            id: 1,
-            image: "https://picsum.photos/200",
-            title: "Project B",
-            categories: ["Web", "Desktop"],
-            languages: ["Vue", "TypeScript"],
-            price: 1000,
-        },
-        {
-            id: 1,
-            image: "https://picsum.photos/200",
-            title: "Project C",
-            categories: ["Mobile", "Desktop"],
-            languages: ["Angular", "JavaScript"],
-            price: 1000,
-        },
-        {
-            id: 1,
-            image: "https://picsum.photos/200",
-            title: "Project D",
-            categories: ["Web", "Mobile", "Desktop"],
-            languages: ["React", "TypeScript"],
-            price: 1000,
-        },
-    ];
-    const PopularProjects: ProjectsType = [
-        {
-            id: 1,
-            image: "https://picsum.photos/200",
-            title: "Project A",
-            categories: ["Web", "Mobile"],
-            languages: ["React", "JavaScript"],
-            price: 1000,
-        },
-        {
-            id: 1,
-            image: "https://picsum.photos/200",
-            title: "Project B",
-            categories: ["Web", "Desktop"],
-            languages: ["Vue", "TypeScript"],
-            price: 1000,
-        },
-        {
-            id: 1,
-            image: "https://picsum.photos/200",
-            title: "Project C",
-            categories: ["Mobile", "Desktop"],
-            languages: ["Angular", "JavaScript"],
-            price: 1000,
-        },
-        {
-            id: 1,
-            image: "https://picsum.photos/200",
-            title: "Project D",
-            categories: ["Web", "Mobile", "Desktop"],
-            languages: ["React", "TypeScript"],
-            price: 1000,
-        },
-    ];
+const getAllProjects = async () => {
+    const response = await axios.get("http://localhost:3000/api/projects");
+    return response.data.projects;
+};
 
+export default async function Home() {
+    const LatestProjects: ProjectsType = await getAllProjects();
+    const PopularProjects: ProjectsType = await getAllProjects();
     return (
         <main className="flex-1">
             <section className="w-full h-screen flex justify-center items-center">
@@ -159,4 +98,3 @@ export default function Home() {
         </main>
     );
 }
-

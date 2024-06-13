@@ -25,16 +25,16 @@ export default async function Profile() {
         <>
             <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6">
                 <UserProfile />
-                <Separator className="my-8" />
-                <div className="grid">
+                <Separator   className="my-8" />
+                <div  className="grid">
                     <div>
                         <div className="flex items-center justify-between">
-                            <h2 className="text-xl font-semibold">
+                            <h2 className="text-3xl font-semibold">
                                 My Projects
                             </h2>
                             <Button variant="outline">View All</Button>
                         </div>
-                        <div className="grid gap-x-20 gap-y-8 mt-4 sm:grid-cols-2">
+                        <div  className="grid gap-x-20 gap-y-8 mt-4 sm:grid-cols-2">
                             <Projects ProjectsData={UserProjects} />
                         </div>
                     </div>

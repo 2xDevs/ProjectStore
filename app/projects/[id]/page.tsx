@@ -1,13 +1,15 @@
 import { SingleProject } from "@/components/SingleProject";
+import axios from "axios";
 
-export default function Project({ params }: { params: { id: string } }) {
-    const Project = {
-        id: 1,
-        image: "https://picsum.photos/200",
-        title: "Project A",
-        categories: ["Web", "Mobile"],
-        languages: ["React", "JavaScript"],
-    };
+
+const getSingleProject = async (id: string) => {
+    const response = await axios.get("http://localhost:3000/api/projects/"+ id);
+    return response.data.project;
+};
+
+
+export default async function Project({ params }: { params: { id: string } }) {
+    const Project = await getSingleProject(params.id)
 
     return (
         <div>

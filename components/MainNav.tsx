@@ -19,28 +19,28 @@ export function MainNav() {
                     {siteConfig.name}
                 </span>
             </Link>
-            {/* <nav className="hidden md:flex items-center gap-4 text-sm lg:gap-6">
+            <nav className="hidden md:flex items-center gap-4 text-sm lg:gap-6">
                     <Link
-                        to="/docs"
+                        href="/"
                         className={cn(
                             "transition-colors hover:text-foreground/80",
-                            pathname === "/docs" ? "text-foreground" : "text-foreground/60"
+                            pathname === "/" ? "text-foreground" : "text-foreground/60"
                         )}
                     >
-                        Docs
+                        Home
                     </Link>
                     <Link
-                        to="/docs/components"
+                        href="/projects"
                         className={cn(
                             "transition-colors hover:text-foreground/80",
-                            pathname?.startsWith("/docs/components")
+                            pathname?.startsWith("/projects")
                                 ? "text-foreground"
                                 : "text-foreground/60"
                         )}
                     >
-                        Components
+                        Projects
                     </Link>
-                </nav> */}
+                </nav>
         </div>
     )
 }
