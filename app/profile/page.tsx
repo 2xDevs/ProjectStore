@@ -11,7 +11,6 @@ const getUserProjects = async () => {
         "http://localhost:3000/api/projects/myprojects",
         { email: session?.user?.email },
     );
-    console.log(response.data.projects);
     return response.data.projects;
 };
 

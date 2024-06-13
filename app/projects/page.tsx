@@ -13,6 +13,7 @@ const projects: ProjectsType = [
         categories: ["Web", "Mobile"],
         languages: ["React", "JavaScript"],
         price: 1000,
+        fileLink: ""
     },
     {
         id: 1,
@@ -21,6 +22,7 @@ const projects: ProjectsType = [
         categories: ["Web", "Desktop"],
         languages: ["Vue", "TypeScript"],
         price: 1000,
+        fileLink: ""
     },
     {
         id: 1,
@@ -29,6 +31,7 @@ const projects: ProjectsType = [
         categories: ["Mobile", "Desktop"],
         languages: ["Angular", "JavaScript"],
         price: 1000,
+        fileLink: ""
     },
     {
         id: 1,
@@ -37,6 +40,7 @@ const projects: ProjectsType = [
         categories: ["Web", "Mobile", "Desktop"],
         languages: ["React", "TypeScript"],
         price: 1000,
+        fileLink: ""
     },
 ];
 

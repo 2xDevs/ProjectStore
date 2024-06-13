@@ -78,7 +78,6 @@ export default function UserLoggedIn() {
 
                             <DropdownMenuItem
                                 onClick={() => {
-                                    console.log("to profile");
                                     router.push("/profile");
                                 }}
                             >

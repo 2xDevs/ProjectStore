@@ -8,7 +8,6 @@ import prisma from "@/prisma/src";
 export async function POST(req: NextRequest) {
     try {
         const { email } = await req.json();
-        console.log(email);
         const projects = await prisma.userProject
             .findMany({
                 where: {
