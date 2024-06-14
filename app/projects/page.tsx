@@ -92,7 +92,7 @@ export default function Component() {
     );
 
     return (
-        <div className="flex max-h-screen max-w-screen-2xl mx-auto">
+        <div className="flex max-h-screen  max-w-screen-2xl mx-auto">
             <div className="bg-white hidden lg:block dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800 w-64 p-6">
                 <div className="flex mb-4 h-8 items-center justify-between ">
                     <h2 className="text-lg font-semibold">Filter Projects</h2>
@@ -139,7 +139,7 @@ export default function Component() {
                 </div>
             </div>
             <div className="flex-1 p-6 overflow-y-auto">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:col-span-3 gap-8 lg:gap-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:col-span-3 gap-y-8 gap-x-6">
                     <Projects ProjectsData={filteredProjects} />
                 </div>
             </div>

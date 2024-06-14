@@ -39,7 +39,7 @@ export const Projects = ({ ProjectsData }: ProjectsProps) => {
                     <>
                         <div
                             key={index}
-                            className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-2"
+                            className="relative overflow-hidden rounded-lg max-w-xs shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-2"
                         >
                             <Link
                                 href={`/projects/${data.id}`}
@@ -48,9 +48,9 @@ export const Projects = ({ ProjectsData }: ProjectsProps) => {
                             >
                                 <span className="sr-only">View Project</span>
                             </Link>
-                            <div className="relative w-full lg:aspect-none">
-                                <Image
-                                    className="object-cover object-center w-full max-h-64"
+                            <div className="aspect-video relative w-full">
+                                <img
+                                    className="object-cover object-center w-full max-h-[200px]"
                                     src={data.image}
                                     alt="Project 1"
                                     width={256}
