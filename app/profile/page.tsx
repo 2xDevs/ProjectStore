@@ -8,8 +8,8 @@ import { getServerSession } from "next-auth";
 const getUserProjects = async () => {
     const session = await getServerSession();
     const response = await axios.post(
-        "http://localhost:3000/api/projects/myprojects",
-        { email: session?.user?.email },
+        `${process.env.NEXTAUTH_URL}/api/projects/myprojects`,
+        { email: session?.user?.email }
     );
     return response.data.projects;
 };

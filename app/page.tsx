@@ -11,7 +11,7 @@ import Image from "next/image";
 import React from "react";
 
 const getAllProjects = async () => {
-    const response = await axios.get("http://localhost:3000/api/projects");
+    const response = await axios.get(`${process.env.NEXTAUTH_URL}/api/projects`);
     return response.data.projects;
 };
 
