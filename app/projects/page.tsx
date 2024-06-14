@@ -7,38 +7,40 @@ import { Projects, ProjectsType } from "@/components/Projects";
 
 const projects: ProjectsType = [
     {
+        
+        
         id: 1,
-        image: "https://picsum.photos/200",
-        title: "Project A",
-        categories: ["Web", "Mobile"],
+    image: "https://picsum.photos/200",
+    title: "Project A",
+    categories: ["Web", "Mobile"],
         languages: ["React", "JavaScript"],
         price: 1000,
         fileLink: ""
     },
     {
         id: 1,
-        image: "https://picsum.photos/200",
-        title: "Project B",
-        categories: ["Web", "Desktop"],
-        languages: ["Vue", "TypeScript"],
+    image: "https://picsum.photos/200",
+    title: "Project A",
+    categories: ["Web", "Mobile"],
+        languages: ["React", "JavaScript"],
         price: 1000,
         fileLink: ""
     },
     {
         id: 1,
-        image: "https://picsum.photos/200",
-        title: "Project C",
-        categories: ["Mobile", "Desktop"],
-        languages: ["Angular", "JavaScript"],
+    image: "https://picsum.photos/200",
+    title: "Project A",
+    categories: ["Web", "Mobile"],
+        languages: ["React", "JavaScript"],
         price: 1000,
         fileLink: ""
     },
     {
         id: 1,
-        image: "https://picsum.photos/200",
-        title: "Project D",
-        categories: ["Web", "Mobile", "Desktop"],
-        languages: ["React", "TypeScript"],
+    image: "https://picsum.photos/200",
+    title: "Project A",
+    categories: ["Web", "Mobile"],
+        languages: ["React", "JavaScript"],
         price: 1000,
         fileLink: ""
     },
@@ -90,9 +92,9 @@ export default function Component() {
     );
 
     return (
-        <div className="flex max-h-screen">
-            <div className="bg-white dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800 w-64 p-6">
-                <div className="flex mb-4 h-8 items-center justify-between">
+        <div className="flex max-h-screen max-w-screen-2xl mx-auto">
+            <div className="bg-white hidden lg:block dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800 w-64 p-6">
+                <div className="flex mb-4 h-8 items-center justify-between ">
                     <h2 className="text-lg font-semibold">Filter Projects</h2>
                     {(selectedCategories.length > 0 ||
                         selectedLanguages.length > 0) && (
@@ -137,7 +139,7 @@ export default function Component() {
                 </div>
             </div>
             <div className="flex-1 p-6 overflow-y-auto">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:col-span-3 gap-8 lg:gap-12">
                     <Projects ProjectsData={filteredProjects} />
                 </div>
             </div>
