@@ -21,8 +21,8 @@ export type ProjectData = {
     title: string;
     categories: string[];
     languages: string[];
-    price?: number;
-    fileLink: string;
+    price?: number | null;
+    fileLink?: string | null;
 };
 
 export type ProjectsType = ProjectData[];

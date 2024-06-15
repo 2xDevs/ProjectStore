@@ -1,28 +1,13 @@
 import { Projects, ProjectsType } from "@/components/Projects";
-import Autoplay from "embla-carousel-autoplay";
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel";
-import axios from "axios";
-import Image from "next/image";
 import React from "react";
 import { MainCarousel } from "@/components/MainCarousel";
-
-const getAllProjects = async () => {
-    const response = await axios.get(
-        `${process.env.NEXTAUTH_URL}/api/projects`,
-    );
-    return response.data.projects;
-};
+import { getAllProjects } from "@/lib/server";
 
 export default async function Home() {
     const LatestProjects: ProjectsType = await getAllProjects();
     const CarouselProjects: ProjectsType = await getAllProjects();
     const PopularProjects: ProjectsType = await getAllProjects();
+    console.log(LatestProjects);
     return (
         <main className="flex-1">
             <section className="w-full flex justify-center pt-16">
