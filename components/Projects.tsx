@@ -49,12 +49,13 @@ export const Projects = ({ ProjectsData }: ProjectsProps) => {
                                 <span className="sr-only">View Project</span>
                             </Link>
                             <div className="aspect-video relative w-full">
-                                <img
+                                <Image
                                     className="object-cover object-center w-full max-h-[200px]"
                                     src={data.image}
                                     alt="Project 1"
                                     width={256}
                                     height={150}
+                                    unoptimized={true}
                                 />
                                 <h3 className="absolute bottom-0 px-2 pb-2 [text-shadow:1px_1px_20px_black,_0_0_0.2em_black,_0_0_2em_black]  w-full font-bold text-xl">
                                     {data.title}

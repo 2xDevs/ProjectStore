@@ -1,4 +1,5 @@
 import { Projects, ProjectsType } from "@/components/Projects";
+import Autoplay from "embla-carousel-autoplay";
 import {
     Carousel,
     CarouselContent,
@@ -9,37 +10,43 @@ import {
 import axios from "axios";
 import Image from "next/image";
 import React from "react";
+import { MainCarousel } from "@/components/MainCarousel";
 
 const getAllProjects = async () => {
-    const response = await axios.get(`${process.env.NEXTAUTH_URL}/api/projects`);
+    const response = await axios.get(
+        `${process.env.NEXTAUTH_URL}/api/projects`,
+    );
     return response.data.projects;
 };
 
 export default async function Home() {
     const LatestProjects: ProjectsType = await getAllProjects();
+    const CarouselProjects: ProjectsType = await getAllProjects();
     const PopularProjects: ProjectsType = await getAllProjects();
     return (
         <main className="flex-1">
-            <section className="w-full h-screen flex justify-center items-center">
-                <Carousel className="w-full max-w-lg">
-                    <CarouselContent>
-                        {Array.from({ length: 5 }).map((_, index) => (
-                            <CarouselItem key={index}>
-                                <div className="flex aspect-video h-full w-full justify-center p-2">
-                                    <Image
-                                        src="https://picsum.photos/200"
-                                        width={100}
-                                        height={100}
-                                        className="h-full w-full rounded-lg"
-                                        alt="Projects"
-                                    />
-                                </div>
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
-                </Carousel>
+            <section className="w-full flex justify-center pt-16">
+                <MainCarousel CarouselProjects={CarouselProjects} />
+                {/* <Carousel className="w-full max-w-screen-lg"> */}
+                {/*     <CarouselContent> */}
+                {/*         {LatestProjects.map((Project, index) => ( */}
+                {/*             <CarouselItem key={index}> */}
+                {/*                 <div className="flex [aspect-ratio:16/10] h-full w-full justify-center p-2"> */}
+                {/*                     <Image */}
+                {/*                         src={Project.image} */}
+                {/*                         width={100} */}
+                {/*                         height={100} */}
+                {/*                         className="h-full w-full rounded-lg" */}
+                {/*                         alt="Projects" */}
+                {/*                         unoptimized={true} */}
+                {/*                     /> */}
+                {/*                 </div> */}
+                {/*             </CarouselItem> */}
+                {/*         ))} */}
+                {/*     </CarouselContent> */}
+                {/*     <CarouselPrevious /> */}
+                {/*     <CarouselNext /> */}
+                {/* </Carousel> */}
             </section>
 
             <section id="latest" className="w-full py-12 md:py-24 lg:py-32">
