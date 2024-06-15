@@ -1,12 +1,13 @@
-import { Projects, ProjectsType } from "@/components/Projects";
 import React from "react";
 import { MainCarousel } from "@/components/MainCarousel";
 import { getAllProjects } from "@/lib/server";
+import { ProjectsType } from "@/types/project";
+import { Projects } from "@/components/Projects";
 
 export default async function Home() {
-    const LatestProjects: ProjectsType = await getAllProjects();
-    const CarouselProjects: ProjectsType = await getAllProjects();
-    const PopularProjects: ProjectsType = await getAllProjects();
+    const LatestProjects: ProjectsType | null = await getAllProjects();
+    const CarouselProjects: ProjectsType | null = await getAllProjects();
+    const PopularProjects: ProjectsType | null = await getAllProjects();
     console.log(LatestProjects);
     return (
         <main className="flex-1">

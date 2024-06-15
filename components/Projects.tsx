@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { ProjectsType } from "@/types/project";
 
 /**
  *{
@@ -15,26 +16,15 @@ import { Button } from "./ui/button";
 
  */
 
-export type ProjectData = {
-    id: number;
-    image: string;
-    title: string;
-    categories: string[];
-    languages: string[];
-    price?: number | null;
-    fileLink?: string | null;
-};
-
-export type ProjectsType = ProjectData[];
-
 type ProjectsProps = {
-    ProjectsData: ProjectsType;
+    ProjectsData: ProjectsType | null;
 };
 
 export const Projects = ({ ProjectsData }: ProjectsProps) => {
     return (
         <>
-            {ProjectsData.map((data, index) => {
+
+            {ProjectsData!.map((data, index) => {
                 return (
                     <>
                         <div
