@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
+import { ProjectType } from "@/types/project";
 import Image from "next/image";
-import { ProjectData } from "./Projects";
 
-export const SingleProject = ({ Project }: { Project: ProjectData }) => {
+export const SingleProject = ({ Project }: { Project: ProjectType }) => {
     return (
         <div className="bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-900">
             <div className="relative">

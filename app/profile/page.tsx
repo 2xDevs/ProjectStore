@@ -1,4 +1,4 @@
-import { Projects, ProjectsType } from "@/components/Projects";
+import { Projects, ProjectsType } from "@/components/Project";
 import { UserProfile } from "@/components/UserProfile";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";

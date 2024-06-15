@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import { Projects, ProjectsType } from "@/components/Projects";
+import { Projects, ProjectsType } from "@/components/Project";
 
 const projects: ProjectsType = [
     {

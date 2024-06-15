@@ -9,13 +9,13 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-import { ProjectsType } from "./Projects";
 import Image from "next/image";
+import { ProjectsType } from "@/types/project";
 
 export const MainCarousel = ({
     CarouselProjects,
 }: {
-    CarouselProjects: ProjectsType;
+    CarouselProjects: ProjectsType | null;
 }) => {
     const plugin = React.useRef(Autoplay({ delay: 2000 }));
 
@@ -27,16 +27,15 @@ export const MainCarousel = ({
             onMouseLeave={plugin.current.reset}
         >
             <CarouselContent>
-                {CarouselProjects.map((Project, index) => (
+                {CarouselProjects!.map((Project, index) => (
                     <CarouselItem key={index}>
                         <div className="flex [aspect-ratio:16/10] h-full w-full justify-center p-2">
                             <Image
                                 src={Project.image}
-                                width={100}
-                                height={100}
+                                width={1920}
+                                height={1080}
                                 className="h-full w-full rounded-lg"
                                 alt="Projects"
-                                unoptimized={true}
                             />
                         </div>
                     </CarouselItem>
