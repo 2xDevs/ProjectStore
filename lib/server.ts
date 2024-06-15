@@ -1,6 +1,9 @@
+import { ProjectType, ProjectsType } from "@/types/project";
 import prisma from "../prisma/src/index";
 
-export async function getAllProjects() {
+
+
+export async function getAllProjects(): Promise<ProjectsType | null> {
     try {
         const projects = await prisma.project.findMany({
             select: {
@@ -15,10 +18,11 @@ export async function getAllProjects() {
         return projects;
     } catch (error: any) {
         console.log(error.message);
+        return null
     }
 }
 
-export async function getProject(id: string) {
+export async function getProject(id: string): Promise<ProjectType | null> {
     try {
         const ProjectId: number = Number(id);
         const project = await prisma.project.findUnique({
@@ -27,12 +31,14 @@ export async function getProject(id: string) {
             },
         });
         return project;
+
     } catch (error: any) {
         console.log(error.message);
+        return null;
     }
 }
 
-export async function getMyProjects(email: string) {
+export async function getMyProjects(email: string): Promise<ProjectsType | null> {
     try {
         const projects = await prisma.userProject
             .findMany({
@@ -59,5 +65,6 @@ export async function getMyProjects(email: string) {
         return projects;
     } catch (error: any) {
         console.log(error.message);
+        return null;
     }
 }
