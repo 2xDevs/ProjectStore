@@ -2,13 +2,13 @@ import { Button } from "@/components/ui/button";
 import { ProjectType } from "@/types/project";
 import Image from "next/image";
 
-export const SingleProject = ({ Project }: { Project: ProjectType }) => {
+export const SingleProject = ({ Project }: { Project: ProjectType | null }) => {
     return (
         <div className="bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-900">
             <div className="relative">
                 <div className="h-64 sm:h-80 md:h-96">
                     <Image
-                        src={Project.image}
+                        src={Project!.image}
                         alt="Project 1"
                         width={500}
                         height={400}

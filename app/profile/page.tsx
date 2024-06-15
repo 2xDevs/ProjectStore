@@ -1,22 +1,14 @@
-import { Projects, ProjectsType } from "@/components/Project";
+import { Project } from "@/components/Project";
 import { UserProfile } from "@/components/UserProfile";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import axios from "axios";
+import { getMyProjects } from "@/lib/server";
 import { getServerSession } from "next-auth";
 
-const getUserProjects = async () => {
-    const session = await getServerSession();
-    const response = await axios.post(
-        `${process.env.NEXTAUTH_URL}/api/projects/myprojects`,
-        { email: session?.user?.email }
-    );
-    return response.data.projects;
-};
-
 export default async function Profile() {
-    const UserProjects: ProjectsType = await getUserProjects();
-    UserProjects.map((project) => {
+    const session = await getServerSession();
+    const UserProjects = await getMyProjects(session?.user?.email!);
+    UserProjects?.map((project) => {
         project.price = undefined;
     });
 
@@ -24,8 +16,8 @@ export default async function Profile() {
         <>
             <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6">
                 <UserProfile />
-                <Separator   className="my-8" />
-                <div  className="grid">
+                <Separator className="my-8" />
+                <div className="grid">
                     <div>
                         <div className="flex items-center justify-between">
                             <h2 className="text-3xl font-semibold">
@@ -33,8 +25,13 @@ export default async function Profile() {
                             </h2>
                             <Button variant="outline">View All</Button>
                         </div>
-                        <div  className="grid gap-x-20 gap-y-8 mt-4 sm:grid-cols-2">
-                            <Projects ProjectsData={UserProjects} />
+                        <div className="grid gap-x-20 gap-y-8 mt-4 sm:grid-cols-2">
+                            {UserProjects!.map((ProjectData, index) => (
+                                <Project
+                                    key={index}
+                                    ProjectData={ProjectData}
+                                />
+                            ))}
                         </div>
                     </div>
                 </div>

@@ -1,94 +1,64 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import { Projects, ProjectsType } from "@/components/Project";
+import { Project } from "@/components/Project";
+import { getAllProjects } from "@/lib/server";
+import { ProjectsType } from "@/types/project";
 
-const projects: ProjectsType = [
-    {
-        
-        
-        id: 1,
-    image: "https://picsum.photos/200",
-    title: "Project A",
-    categories: ["Web", "Mobile"],
-        languages: ["React", "JavaScript"],
-        price: 1000,
-        fileLink: ""
-    },
-    {
-        id: 1,
-    image: "https://picsum.photos/200",
-    title: "Project A",
-    categories: ["Web", "Mobile"],
-        languages: ["React", "JavaScript"],
-        price: 1000,
-        fileLink: ""
-    },
-    {
-        id: 1,
-    image: "https://picsum.photos/200",
-    title: "Project A",
-    categories: ["Web", "Mobile"],
-        languages: ["React", "JavaScript"],
-        price: 1000,
-        fileLink: ""
-    },
-    {
-        id: 1,
-    image: "https://picsum.photos/200",
-    title: "Project A",
-    categories: ["Web", "Mobile"],
-        languages: ["React", "JavaScript"],
-        price: 1000,
-        fileLink: ""
-    },
-];
-
-const categories = ["AI", "ML", "NLP", "Web", "App", "DS", "DL"];
+const categories = ["AI", "ML", "NLP", "WEB", "APP", "DS", "DL"];
 const languages = [
     "C",
     "C++",
     "C#",
-    "Java",
-    "Python",
+    "JAVA",
+    "PYTHON",
     "HTML/CSS",
-    "JavaScript",
-    "React",
-    "Angular",
-    "Vue",
-    "Next",
+    "JAVASCRIPT",
+    "REACT",
+    "ANGULAR",
+    "VUE",
+    "NEXT",
     "PHP",
-    "Kotlin",
+    "KOTLIN",
 ];
 
 export default function Component() {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
+    let projects: ProjectsType | null;
+
+    useEffect(() => {
+        const fetchData = async () => {
+            projects = await getAllProjects()
+        };
+        fetchData()
+    }, [])
+    
 
     const handleToggle = (
         item: string,
         list: string[],
-        setList: React.Dispatch<React.SetStateAction<string[]>>
+        setList: React.Dispatch<React.SetStateAction<string[]>>,
     ) => {
         setList(
             list.includes(item)
                 ? list.filter((i) => i !== item)
-                : [...list, item]
+                : [...list, item],
         );
     };
 
-    const filteredProjects = projects.filter(
+    const filteredProjects = projects!.filter(
         (project) =>
             (selectedCategories.length === 0 ||
                 selectedCategories.some((category) =>
-                    project.categories.includes(category)
+                    project.categories.includes(category),
                 )) &&
             (selectedLanguages.length === 0 ||
                 selectedLanguages.some((language) =>
-                    project.languages.includes(language)
-                ))
+                    project.languages.includes(language),
+                )),
     );
 
     return (
@@ -120,7 +90,7 @@ export default function Component() {
                             handleToggle(
                                 category,
                                 selectedCategories,
-                                setSelectedCategories
+                                setSelectedCategories,
                             )
                         }
                     />
@@ -132,7 +102,7 @@ export default function Component() {
                             handleToggle(
                                 language,
                                 selectedLanguages,
-                                setSelectedLanguages
+                                setSelectedLanguages,
                             )
                         }
                     />
@@ -140,7 +110,9 @@ export default function Component() {
             </div>
             <div className="flex-1 p-6 overflow-y-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:col-span-3 gap-y-8 gap-x-6">
-                    <Projects ProjectsData={filteredProjects} />
+                    {filteredProjects.map((ProjectData, index) => (
+                        <Project ProjectData={ProjectData} />
+                    ))}
                 </div>
             </div>
         </div>
