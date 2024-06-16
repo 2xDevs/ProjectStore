@@ -8,12 +8,12 @@ interface DocsConfig {
 export const docsConfig: DocsConfig = {
     mainNav: [
         {
-            title: "Documentation",
-            href: "/docs",
+            title: "Home",
+            href: "/",
         },
         {
-            title: "Components",
-            href: "/docs/components/accordion",
+            title: "Projects",
+            href: "/projects",
         },
     ],
     sidebarNav: [

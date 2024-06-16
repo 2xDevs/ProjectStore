@@ -3,46 +3,49 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { ProjectType } from "@/types/project";
-import { CartItems } from "@/types/cart";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
-    if (localStorage.getItem("cartItems") == null) {
-        const items = {
-            items: [],
-        };
-        console.log("1");
-        localStorage.setItem("cartItems", JSON.stringify(items));
-    }
-    const cartItemsDefault = localStorage.getItem("cartItems");
-    console.log("2")
-    const [cartItems, setCartItems] = useState(cartItemsDefault);
-    function HandleAddToCart() {
-        const itemsData = JSON.parse(cartItems!);
-        const itemData = {
-            id: ProjectData.id,
-            image: ProjectData.image,
-            title: ProjectData.title,
-            price: ProjectData.price,
-        };
-        console.log(itemsData);
-        itemsData.items.push(itemData);
-        localStorage.setItem("cartItems", JSON.stringify(itemsData));
-        setCartItems(JSON.stringify(itemsData));
+    const pathname = usePathname()
+    const [cartItems, setCartItems] = useState<{ items: any[] }>({ items: [] });
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const storedItems = localStorage.getItem("cartItems");
+            if (storedItems) {
+                setCartItems(JSON.parse(storedItems));
+            } else {
+                const initialItems = { items: [] };
+                localStorage.setItem("cartItems", JSON.stringify(initialItems));
+                setCartItems(initialItems);
+            }
+        }
+    }, []);
+
+    const isInCart = cartItems.items.some(item => item.id === ProjectData.id);
+
+    function handleAddToCart() {
+        if (!isInCart) {
+            const updatedItems = [...cartItems.items, {
+                id: ProjectData.id,
+                image: ProjectData.image,
+                title: ProjectData.title,
+                price: ProjectData.price,
+            }];
+            const newCart = { items: updatedItems };
+            localStorage.setItem("cartItems", JSON.stringify(newCart));
+            setCartItems(newCart);
+        }
     }
 
-    function HandleRemoveFromCart() {
-        // Retrieve existing cart items from localStorage
-        const items = JSON.parse(cartItems!);
-
-        // Remove the item with the specified ID from the cart
-        const updatedCartItems = items.items.filter(
-            (item: { id: any }) => item.id !== ProjectData.id
+    function handleRemoveFromCart() {
+        const updatedItems = cartItems.items.filter(
+            (item) => item.id !== ProjectData.id
         );
-
-        // Store the updated cart items in localStorage
-        localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-        setCartItems(JSON.stringify(updatedCartItems));
+        const newCart = { items: updatedItems };
+        localStorage.setItem("cartItems", JSON.stringify(newCart));
+        setCartItems(newCart);
     }
 
     return (
@@ -90,27 +93,30 @@ export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
                     <h4 className="font-semibold text-lg md:text-xl">
                         {ProjectData.price}
                     </h4>
-                    {ProjectData.price ? (
-                        <>
-                            {cartItems?.includes(`"id":${ProjectData.id}`) ? (
-                                <Button
-                                    className="z-20 bg-destructive"
-                                    onClick={HandleRemoveFromCart}
-                                >
-                                    Remove from cart
-                                </Button>
-                            ) : (
-                                <Button
-                                    className="z-20"
-                                    onClick={HandleAddToCart}
-                                >
-                                    Add to cart
-                                </Button>
-                            )}
-                        </>
+                    {pathname === "/" || pathname === "/projects" ? <> <Button
+                                onClick={handleRemoveFromCart}
+                            >
+                                View Project
+                            </Button></> : (ProjectData.price ? (
+                        isInCart ? (
+                            <Button
+                                className="z-20 bg-destructive"
+                                onClick={handleRemoveFromCart}
+                            >
+                                Remove from cart
+                            </Button>
+                        ) : (
+                            <Button
+                                className="z-20"
+                                onClick={handleAddToCart}
+                            >
+                                Add to cart
+                            </Button>
+                        )
                     ) : (
                         <Button className="z-20 w-full">Download</Button>
-                    )}
+                    ))}
+                    
                 </div>
             </div>
         </div>

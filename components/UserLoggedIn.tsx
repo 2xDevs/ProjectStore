@@ -45,7 +45,7 @@ export default function UserLoggedIn() {
                     <Link
                         href="/profile#my-projects"
                         className={cn(
-                            "transition-colors hover:text-foreground/80",
+                            "transition-colors hidden md:block text-xs md:text-base hover:text-foreground/80",
                             pathname === "/profile#my-projects"
                                 ? "text-foreground"
                                 : "text-foreground/60",
