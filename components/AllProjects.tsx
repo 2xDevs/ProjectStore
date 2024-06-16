@@ -13,7 +13,8 @@ const languages = [
     "C#",
     "JAVA",
     "PYTHON",
-    "HTML/CSS",
+    "HTML",
+    "CSS",
     "JAVASCRIPT",
     "REACT",
     "ANGULAR",
@@ -102,7 +103,7 @@ export const AllProjects = ({projects}: {projects: ProjectsType | null}) => {
             <div className="flex-1 p-6 overflow-y-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:col-span-3 gap-y-8 gap-x-6">
                     {filteredProjects.map((ProjectData, index) => (
-                        <Project ProjectData={ProjectData} />
+                        <Project key={index} ProjectData={ProjectData} />
                     ))}
                 </div>
             </div>
