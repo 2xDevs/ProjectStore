@@ -60,12 +60,12 @@ export function CommandMenu({ Projects }: { Projects: ProjectsType }) {
         const foundProjects = Projects.filter((Project) => {
             return (
                 Project.title.toLowerCase().includes(input.toLowerCase()) ||
-                Project.categories.map((category) => {
-                    category.toLowerCase().includes(input.toLowerCase());
-                }) ||
-                Project.categories.map((category) => {
-                    category.toLowerCase().includes(input.toLowerCase());
-                })
+                JSON.stringify(Project.categories)
+                    .toLocaleLowerCase()
+                    .includes(input.toLocaleLowerCase()) ||
+                JSON.stringify(Project.languages)
+                    .toLocaleLowerCase()
+                    .includes(input.toLocaleLowerCase())
             );
         });
         setSearchProjects(foundProjects);
