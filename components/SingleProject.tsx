@@ -4,32 +4,62 @@ import Image from "next/image";
 
 export const SingleProject = ({ Project }: { Project: ProjectType | null }) => {
     return (
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-900">
-            <div className="relative">
-                <div className="h-64 sm:h-80 md:h-96">
-                    <Image
-                        src={Project!.image}
-                        alt="Project 1"
-                        width={500}
-                        height={400}
-                        className="object-cover w-full h-64"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">
-                        Sleek Project
-                    </h2>
+        <>
+            <section className="w-full relative">
+                <Image
+                    src={Project?.image!}
+                    width={1920}
+                    height={800}
+                    alt="Product Hero"
+                    className="w-full h-[500px] md:h-[600px] lg:h-[700px] object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+            </section>
+            <div className="w-10/12 max-w-6xl mx-auto px-4 md:px-6">
+                <div className="grid gap- md:gap-">
+                    <div className="space-y-6">
+                        <div className="space-y-2">
+                            {/* <div className="inline-block rounded-md bg-gray-100 px-3 py-1 text-sm font-medium dark:bg-gray-800">
+                            Web Design
+                            </div> */}
+                            <div className="mt-2 flex py-1 gap-2 overflow-hidden">
+                                {Project!.categories.map((category, index) => (
+                                    <span
+                                        key={index}
+                                        className="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md text-[0.65rem]"
+                                    >
+                                        {category}
+                                    </span>
+                                ))}
+                                {Project!.languages.map((language, index) => (
+                                    <span
+                                        key={index}
+                                        className="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md text-[0.65rem]"
+                                    >
+                                        {language}
+                                    </span>
+                                ))}
+                            </div>
+                            <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
+                                {Project?.title}
+                            </h1>
+                            <div className="flex items-center justify-between pt-2">
+                                <div className="text-xl font-bold">
+                                    <sup>₹</sup>
+                                    {Project?.price}
+                                </div>
+                                <Button>Buy Now</Button>
+                            </div>
+                        </div>
+                        <div className="text-xl md:text-2xl font-semibold">
+                            Abstract
+                        </div>
+                        <div className="text-gray-500 dark:text-gray-400 text-justify">
+                            {Project?.content}
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div className="p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between">
-                <p className="text-gray-500 dark:text-gray-400 mb-4 sm:mb-0 max-w-md">
-                    Discover the power of our sleek and modern project. Packed
-                    with cutting-edge features, its the perfect solution for
-                    your business needs.
-                </p>
-                <Button className="w-full sm:w-auto">Buy Now</Button>
-            </div>
-        </div>
+        </>
     );
 };
