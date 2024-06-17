@@ -6,8 +6,9 @@ import UserLoggedIn from "./UserLoggedIn";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { CommandMenu } from "./CommandMenu";
+import { ProjectsType } from "@/types/project";
 
-export function SiteHeader() {
+export function SiteHeader({AllProjects}: {AllProjects: ProjectsType}) {
     const pathname = usePathname();
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -21,7 +22,7 @@ export function SiteHeader() {
                 <MainNav />
                 <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
                     <div className="w-full flex flex-1 justify-end md:w-auto md:flex-none">
-                        <CommandMenu />
+                        <CommandMenu Projects={AllProjects} />
                     </div>
                     <nav className="flex items-center">
                         <UserLoggedIn />

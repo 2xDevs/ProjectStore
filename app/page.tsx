@@ -3,7 +3,6 @@ import { MainCarousel } from "@/components/MainCarousel";
 import { getAllCachedProjects } from "@/lib/server";
 import { ProjectsType } from "@/types/project";
 import { Project } from "@/components/Project";
-import { Description } from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -35,8 +34,7 @@ export default async function Home() {
     ];
     return (
         <main className="flex-1">
-            <section className="w-full flex justify-center pt-16">
-                {/* Carosel for the Home Page */}
+            <section className="flex justify-center pt-16">
                 <MainCarousel CarouselProjects={CarouselProjects} />
             </section>
 
@@ -66,7 +64,7 @@ const ProjectSection = ({
 }) => {
     return (
         <section id={id} className="w-full py-12 md:py-24 lg:py-32">
-            <div className="container grid gap-8 px-4 md:px-6">
+            <div className="container grid gap-8 place-items-center md:px-6">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center relative">
                     <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                         {title}

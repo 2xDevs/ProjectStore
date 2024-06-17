@@ -18,12 +18,12 @@ export const MainCarousel = ({
 }: {
     CarouselProjects: ProjectsType | null;
 }) => {
-    const plugin = React.useRef(Autoplay({ delay: 2000 }));
+    const plugin = React.useRef(Autoplay({ delay: 3000 }));
 
     return (
         <Carousel
             plugins={[plugin.current]}
-            className="w-full max-w-screen-lg"
+            className="w-full max-w-screen-lg "
             onMouseEnter={plugin.current.stop}
             onMouseLeave={plugin.current.play}
             opts={{
