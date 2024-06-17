@@ -1,12 +1,6 @@
 "use client";
 
-import {
-    CheckIcon,
-    LogOut,
-    Moon,
-    Sun,
-    User,
-} from "lucide-react";
+import { CheckIcon, LogOut, Moon, Sun, User } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -24,12 +18,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { ModeToggle } from "./ModeToggle";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export default function UserLoggedIn() {
+    const pathname = usePathname();
     const session = useSession();
     const router = useRouter();
     const { setTheme } = useTheme();
@@ -42,9 +39,20 @@ export default function UserLoggedIn() {
         }
     }, [setTheme]);
     return (
-        <div className="flex px-2 py-1 h-10">
+        <div className="flex px-2 py-1 h-10 items-center gap-4">
             {session.data?.user ? (
                 <>
+                    <Link
+                        href="/profile#my-projects"
+                        className={cn(
+                            "transition-colors hidden md:block text-xs md:text-base hover:text-foreground/80",
+                            pathname === "/profile#my-projects"
+                                ? "text-foreground"
+                                : "text-foreground/60",
+                        )}
+                    >
+                        My Projects
+                    </Link>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Image
@@ -70,7 +78,6 @@ export default function UserLoggedIn() {
 
                             <DropdownMenuItem
                                 onClick={() => {
-                                    console.log("to profile");
                                     router.push("/profile");
                                 }}
                             >
@@ -91,7 +98,7 @@ export default function UserLoggedIn() {
                                             onClick={() => {
                                                 localStorage.setItem(
                                                     "theme",
-                                                    "light"
+                                                    "light",
                                                 );
                                                 setUserTheme("light");
                                                 setTheme("light");
@@ -108,7 +115,7 @@ export default function UserLoggedIn() {
                                             onClick={() => {
                                                 localStorage.setItem(
                                                     "theme",
-                                                    "dark"
+                                                    "dark",
                                                 );
                                                 setUserTheme("dark");
                                                 setTheme("dark");
@@ -125,7 +132,7 @@ export default function UserLoggedIn() {
                                             onClick={() => {
                                                 localStorage.setItem(
                                                     "theme",
-                                                    "system"
+                                                    "system",
                                                 );
                                                 setUserTheme("system");
                                                 setTheme("system");

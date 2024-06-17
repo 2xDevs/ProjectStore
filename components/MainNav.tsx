@@ -14,33 +14,33 @@ export function MainNav() {
     return (
         <div className="mr-4 flex">
             <Link href={"/"} className="mr-6 flex items-center space-x-1">
-        <Icons.logo className="h-12 w-12" />
-                <span className="text-2xl font-bold ">
+        <Icons.logo className="h-6 w-6 md:h-12 md:w-12 " />
+                <span className="text-base md:text-2xl font-bold ">
                     {siteConfig.name}
                 </span>
             </Link>
-            {/* <nav className="hidden md:flex items-center gap-4 text-sm lg:gap-6">
+            <nav className="hidden md:flex items-center gap-4 text-sm lg:gap-6">
                     <Link
-                        to="/docs"
+                        href="/"
                         className={cn(
                             "transition-colors hover:text-foreground/80",
-                            pathname === "/docs" ? "text-foreground" : "text-foreground/60"
+                            pathname === "/" ? "text-foreground" : "text-foreground/60"
                         )}
                     >
-                        Docs
+                        Home
                     </Link>
                     <Link
-                        to="/docs/components"
+                        href="/projects"
                         className={cn(
                             "transition-colors hover:text-foreground/80",
-                            pathname?.startsWith("/docs/components")
+                            pathname?.startsWith("/projects")
                                 ? "text-foreground"
                                 : "text-foreground/60"
                         )}
                     >
-                        Components
+                        Projects
                     </Link>
-                </nav> */}
+                </nav>
         </div>
     )
 }

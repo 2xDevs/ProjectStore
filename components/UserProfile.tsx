@@ -1,7 +1,7 @@
 "use client"
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { Avatar, AvatarFallback } from "./ui/avatar";
+import { Avatar } from "./ui/avatar";
 
 export const UserProfile = () => {
     const session = useSession();
@@ -19,9 +19,8 @@ export const UserProfile = () => {
                         width={208}
                         alt="profile"
                     />
-                    <AvatarFallback>JP</AvatarFallback>
                 </Avatar>
-                <div className="grid gap-1">
+                <div id="my-projects" className="grid gap-1">
                     <div className="text-2xl font-bold">
                         {session.data?.user?.name}
                     </div>

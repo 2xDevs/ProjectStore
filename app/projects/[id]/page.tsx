@@ -1,13 +1,8 @@
 import { SingleProject } from "@/components/SingleProject";
+import { getCachedProject } from "@/lib/server";
 
-export default function Project({ params }: { params: { id: string } }) {
-    const Project = {
-        id: 1,
-        image: "https://picsum.photos/200",
-        title: "Project A",
-        categories: ["Web", "Mobile"],
-        languages: ["React", "JavaScript"],
-    };
+export default async function Project({ params }: { params: { id: string } }) {
+    const Project = await getCachedProject(params.id);
 
     return (
         <div>
