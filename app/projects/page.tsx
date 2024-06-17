@@ -1,8 +1,8 @@
 import { AllProjects } from "@/components/AllProjects";
-import { getAllProjects } from "@/lib/server";
+import { getAllCachedProjects } from "@/lib/server";
 
 export default async function Component() {
-    const projects = await getAllProjects()
+    const projects = await getAllCachedProjects();
     return (
         <AllProjects projects={projects}/>
     )

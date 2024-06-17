@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import { ProjectsType } from "@/types/project";
+import Link from 'next/link';
 
 export const MainCarousel = ({
     CarouselProjects,
@@ -24,19 +25,24 @@ export const MainCarousel = ({
             plugins={[plugin.current]}
             className="w-full max-w-screen-lg"
             onMouseEnter={plugin.current.stop}
-            onMouseLeave={plugin.current.reset}
+            onMouseLeave={plugin.current.play}
+            opts={{
+                loop: true
+            }}
         >
             <CarouselContent>
                 {CarouselProjects!.map((Project, index) => (
                     <CarouselItem key={index}>
                         <div className="flex [aspect-ratio:16/10] h-full w-full justify-center p-2">
-                            <Image
-                                src={Project.image}
-                                width={1920}
-                                height={1080}
-                                className="h-full w-full rounded-lg"
-                                alt="Projects"
-                            />
+                            <Link href={`/projects/${Project.id}`}>
+                                <Image
+                                    src={Project.image}
+                                    width={1920}
+                                    height={1080}
+                                    className="h-full w-full rounded-lg"
+                                    alt="Projects"
+                                />
+                            </Link>
                         </div>
                     </CarouselItem>
                 ))}

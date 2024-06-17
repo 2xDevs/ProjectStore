@@ -5,6 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Project } from "@/components/Project";
 import { ProjectsType } from "@/types/project";
+import { Label } from "./ui/label";
 
 const categories = ["AI", "ML", "NLP", "WEB", "APP", "DS", "DL"];
 const languages = [
@@ -129,12 +130,13 @@ function FilterSection({
             <h3 className="text-sm font-semibold mb-2">{title}</h3>
             <div className="space-y-2">
                 {items.map((item) => (
-                    <div key={item} className="flex items-center">
+                    <div key={item} className="flex items-center cursor-pointer w-fit">
                         <Checkbox
+                        id={item}
                             checked={selectedItems.includes(item)}
                             onCheckedChange={() => onChange(item)}
                         />
-                        <span className="ml-2 text-xs">{item}</span>
+                        <Label htmlFor={item} className="ml-2 text-xs cursor-pointer">{item}</Label>
                     </div>
                 ))}
             </div>

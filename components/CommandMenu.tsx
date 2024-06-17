@@ -23,7 +23,7 @@ import {
     CommandList,
     CommandSeparator,
 } from "./ui/command";
-import { SearchCodeIcon } from "lucide-react";
+import { SearchIcon } from "lucide-react";
 
 export function CommandMenu({ ...props }: any) {
     const router = useRouter();
@@ -62,7 +62,7 @@ export function CommandMenu({ ...props }: any) {
             <Button
                 variant="outline"
                 className={cn(
-                    "relative h-8 w-fit md:w-40 justify-start rounded-[0.5rem] bg-background text-sm font-normal text-muted-foreground shadow-none sm:pr-12 lg:w-64",
+                    "relative h-8 w-fit md:w-40 justify-start rounded-[0.5rem] bg-background text-sm font-normal text-muted-foreground shadow-none sm:pr-12 lg:w-64"
                 )}
                 onClick={() => setOpen(true)}
                 {...props}
@@ -70,11 +70,9 @@ export function CommandMenu({ ...props }: any) {
                 <span className="hidden lg:inline-flex">
                     Search documentation...
                 </span>
-                <span className="hidden md:inline-flex">
-                    Search ...
-                </span>
+                <span className="hidden md:inline-flex">Search ...</span>
                 <span className="w-fit md:hidden">
-                    <SearchCodeIcon />
+                    <SearchIcon />
                 </span>
                 <kbd className="pointer-events-none absolute right-[0.3rem] top-[0.3rem] hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
                     <span className="text-xs">⌘</span>K
@@ -93,7 +91,7 @@ export function CommandMenu({ ...props }: any) {
                                     value={navItem.title}
                                     onSelect={() => {
                                         runCommand(() =>
-                                            router.push(navItem.href as string),
+                                            router.push(navItem.href as string)
                                         );
                                     }}
                                 >
@@ -110,7 +108,7 @@ export function CommandMenu({ ...props }: any) {
                                     value={navItem.title}
                                     onSelect={() => {
                                         runCommand(() =>
-                                            router.push(navItem.href as string),
+                                            router.push(navItem.href as string)
                                         );
                                     }}
                                 >

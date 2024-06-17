@@ -1,7 +1,24 @@
 import { ProjectType, ProjectsType } from "@/types/project";
 import prisma from "../prisma/src/index";
+import { unstable_cache } from "next/cache";
 
+export const getAllCachedProjects = unstable_cache(
+    async () => getAllProjects(),
+    ["projects"],
+    {
+        revalidate: 3600,
+        tags: ["projects"],
+    }
+);
 
+export const getCachedProject = unstable_cache(
+    async (id: string) => getProject(id),
+    ["project"],
+    {
+        revalidate: 3600,
+        tags: ["project"],
+    }
+);
 
 export async function getAllProjects(): Promise<ProjectsType | null> {
     try {
@@ -18,7 +35,7 @@ export async function getAllProjects(): Promise<ProjectsType | null> {
         return projects;
     } catch (error: any) {
         console.log(error.message);
-        return null
+        return null;
     }
 }
 
@@ -31,14 +48,15 @@ export async function getProject(id: string): Promise<ProjectType | null> {
             },
         });
         return project;
-
     } catch (error: any) {
         console.log(error.message);
         return null;
     }
 }
 
-export async function getMyProjects(email: string): Promise<ProjectsType | null> {
+export async function getMyProjects(
+    email: string
+): Promise<ProjectsType | null> {
     try {
         const projects = await prisma.userProject
             .findMany({

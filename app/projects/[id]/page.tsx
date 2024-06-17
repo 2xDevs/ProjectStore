@@ -1,8 +1,8 @@
 import { SingleProject } from "@/components/SingleProject";
-import { getProject } from "@/lib/server";
+import { getCachedProject } from "@/lib/server";
 
 export default async function Project({ params }: { params: { id: string } }) {
-    const Project = await getProject(params.id);
+    const Project = await getCachedProject(params.id);
 
     return (
         <div>
