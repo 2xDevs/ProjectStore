@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ProjectType } from "@/types/project";
 import Image from "next/image";
+import AddToCartButton from './AddToCartButton';
 
 export const SingleProject = ({ Project }: { Project: ProjectType | null }) => {
     return (
@@ -48,7 +49,7 @@ export const SingleProject = ({ Project }: { Project: ProjectType | null }) => {
                                     <sup>₹</sup>
                                     {Project?.price}
                                 </div>
-                                <Button>Buy Now</Button>
+                                <AddToCartButton project={Project!} />
                             </div>
                         </div>
                         <div className="text-xl md:text-2xl font-semibold">
