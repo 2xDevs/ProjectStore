@@ -5,13 +5,11 @@ import { getMyProjects } from "@/lib/server";
 import { getServerSession } from "next-auth";
 
 export default async function Profile() {
-    console.time("Start Time")
     const session = await getServerSession();
     const UserProjects = await getMyProjects(session?.user?.email!);
     UserProjects?.map((project) => {
         project.price = undefined;
     });
-    console.timeEnd("Start Time")
 
     return (
         <>

@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { useCart } from "@/hooks/use-cart";
-import { ProjectType } from "@/types/project";
+import { CartType } from "@/types/project";
 
 
-const AddToCartButton = ({ project }: { project: ProjectType }) => {
+const AddToCartButton = ({ project }: { project: CartType }) => {
     const { addItem } = useCart();
     const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
@@ -24,7 +24,7 @@ const AddToCartButton = ({ project }: { project: ProjectType }) => {
                 addItem(project);
                 setIsSuccess(true);
             }}
-            className="w-1/4"
+            className="w-2/4 sm:w-1/4"
         >
             {isSuccess ? "Added!" : "Add to cart"}
         </Button>
