@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { ProjectType } from "@/types/project";
 import Image from "next/image";
 import AddToCartButton from './AddToCartButton';
@@ -20,9 +19,6 @@ export const SingleProject = ({ Project }: { Project: ProjectType | null }) => {
                 <div className="grid gap- md:gap-">
                     <div className="space-y-6">
                         <div className="space-y-2">
-                            {/* <div className="inline-block rounded-md bg-gray-100 px-3 py-1 text-sm font-medium dark:bg-gray-800">
-                            Web Design
-                            </div> */}
                             <div className="mt-2 flex py-1 gap-2 overflow-hidden">
                                 {Project!.categories.map((category, index) => (
                                     <span
@@ -46,8 +42,7 @@ export const SingleProject = ({ Project }: { Project: ProjectType | null }) => {
                             </h1>
                             <div className="flex items-center justify-between pt-2">
                                 <div className="text-xl font-bold">
-                                    <sup>₹</sup>
-                                    {Project?.price}
+                                ₹{Project?.price}
                                 </div>
                                 <AddToCartButton project={Project!} />
                             </div>

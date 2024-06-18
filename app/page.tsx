@@ -3,8 +3,10 @@ import { MainCarousel } from "@/components/MainCarousel";
 import { getAllCachedProjects } from "@/lib/server";
 import { ProjectsType } from "@/types/project";
 import { Project } from "@/components/Project";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
 
 export default async function Home() {
     const CarouselProjects = await getAllCachedProjects();
@@ -12,29 +14,23 @@ export default async function Home() {
     const ProjectSectionData = [
         {
             id: "latest",
-            title: "Latest Creative Projects",
-            description:
-                "Discover the latest and most innovative creative projects from our talented community.",
+            title: "Latest Projects",
             Projects: await getAllCachedProjects(),
         },
         {
             id: "popular",
-            title: "Popular Creative Projects",
-            description:
-                "Explore the most popular and sought-after creative projects from our talented community.",
+            title: "Popular Projects",
             Projects: await getAllCachedProjects(),
         },
         {
             id: "featured",
-            title: "Featured Creative Projects",
-            description:
-                "Discover our hand-picked selection of the most impressive and captivating creative projects.",
+            title: "Featured Projects",
             Projects: await getAllCachedProjects(),
         },
     ];
     return (
         <main className="flex-1">
-            <section className="flex justify-center pt-16">
+            <section className="flex justify-center pb-12 pt-16 md:pb-24 lg:pb-32">
                 <MainCarousel CarouselProjects={CarouselProjects} />
             </section>
 
@@ -43,7 +39,6 @@ export default async function Home() {
                     key={index}
                     id={SectionData.id}
                     title={SectionData.title}
-                    description={SectionData.description}
                     Projects={SectionData.Projects}
                 />
             ))}
@@ -54,31 +49,21 @@ export default async function Home() {
 const ProjectSection = ({
     id,
     title,
-    description,
     Projects,
 }: {
     id: string;
     title: string;
-    description: string;
     Projects: ProjectsType | null;
 }) => {
     return (
         <section id={id} className="w-full py-12 md:py-24 lg:py-32">
             <div className="container grid gap-8 place-items-center md:px-6">
-                <div className="flex flex-col items-center justify-center space-y-4 text-center relative">
-                    <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                        {title}
+                <div className="flex w-full items-center justify-center sm:justify-between">
+                    <h2 className="text-2xl font-bold md:text-4xl">
+                        {title} <Link href="/projects" className="text-2xl sm:hidden hover:text-primary max-h-1 hover:border-b-2 hover:border-primary">{">"}</Link>
                     </h2>
-                    <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                        {description}
-                    </p>
-                    <Link href="/projects/" prefetch={true}>
-                        <Button
-                            variant="outline"
-                            className="absolute right-0 bottom-0"
-                        >
-                            View All
-                        </Button>
+                    <Link href="/projects" prefetch={true} className={cn(buttonVariants({variant: "outline"}), "group hidden sm:flex")}>
+                        View All <span className="ml-1 group-hover:translate-x-1 transition-transform duration-100"><ArrowRightIcon /></span>
                     </Link>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

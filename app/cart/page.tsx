@@ -1,6 +1,5 @@
 "use client";
 
-import { JSX, SVGProps, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useCart } from "@/hooks/use-cart";
@@ -8,11 +7,7 @@ import { Icons } from "@/components/Icons";
 
 export default function CartComponent() {
     const { items, removeItem } = useCart();
-    const productIds = items.map(({ project }) => project.id);
-    const cartTotal = items.reduce(
-        (total, { project }) => total + project.price!,
-        0
-    );
+
     const subtotal = items.reduce(
         (total, { project }) => total + project.price!,
         0
@@ -61,9 +56,9 @@ export default function CartComponent() {
                                             ₹{project.price!}
                                         </div>
                                         <Button
-                                            variant="destructive"
+                                            variant="outline"
                                             size="sm"
-                                            className="w-fit"
+                                            className="w-fit text-destructive hover:bg-destructive hover:text-destructive-foreground transition-colors"
                                             onClick={() =>
                                                 removeItem(project.id)
                                             }

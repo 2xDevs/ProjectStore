@@ -1,17 +1,38 @@
-import { ProjectType } from "@/types/project";
+import { CartType } from "@/types/project";
 import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
+import { StorageValue, createJSONStorage, persist } from "zustand/middleware";
 
 export type CartItem = {
-    project: ProjectType;
+    project: CartType;
 };
 
 type CartState = {
     items: CartItem[];
-    addItem: (project: ProjectType) => void;
+    addItem: (project: CartType) => void;
     removeItem: (projectId: number) => void;
     clearCart: () => void;
 };
+
+const selectFieldsToPersist = (state: CartState) => ({
+    items: state.items.map((item) => ({
+        project: {
+            id: item.project.id,
+            title: item.project.title,
+            image: item.project.image,
+            categories: item.project.categories,
+            languages: item.project.languages,
+            price: item.project.price
+        },
+    })),
+});
+
+const serialize = (state: StorageValue<CartState>) =>
+    JSON.stringify({
+        ...state,
+        state: selectFieldsToPersist(state.state),
+    });
+
+const deserialize = (str: string) => JSON.parse(str);
 
 export const useCart = create<CartState>()(
     persist(
@@ -19,7 +40,6 @@ export const useCart = create<CartState>()(
             items: [],
             addItem: (project) => {
                 set((state) => {
-                    // Check if the project already exists in the cart
                     const projectExists = state.items.some(
                         (item) => item.project.id === project.id
                     );
@@ -28,19 +48,22 @@ export const useCart = create<CartState>()(
                         return { items: [...state.items, { project }] };
                     }
 
-                    // Return the current state if the project already exists
                     return state;
                 });
             },
             removeItem: (id) =>
                 set((state) => ({
-                    items: state.items.filter((item) => Number(item.project.id) !== id),
+                    items: state.items.filter(
+                        (item) => Number(item.project.id) !== id
+                    ),
                 })),
             clearCart: () => set({ items: [] }),
         }),
         {
             name: "cart-storage",
             storage: createJSONStorage(() => localStorage),
+            serialize,
+            deserialize,
         }
     )
 );

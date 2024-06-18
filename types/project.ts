@@ -10,3 +10,12 @@ export type ProjectType = {
 };
 
 export type ProjectsType = ProjectType[];
+
+export type CartType = {
+    id: number;
+    image: string;
+    title: string;
+    categories: string[];
+    languages: string[];
+    price?: number | null;
+};

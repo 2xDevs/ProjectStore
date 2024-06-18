@@ -20,7 +20,7 @@ export function MobileNav() {
             <SheetTrigger asChild>
                 <Button
                     variant="ghost"
-                    className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+                    className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 lg:hidden"
                 >
                     <MenuIcon />
                     <span className="sr-only">Toggle Menu</span>
@@ -32,8 +32,8 @@ export function MobileNav() {
                     className="flex items-center"
                     onOpenChange={setOpen}
                 >
-                    <Icons.logo className="mr-2 h-6 w-6" />
-                    <span className="text-base font-medium">
+                    <Icons.logo className="mr-2 h-7 w-7" />
+                    <span className="text-lg font-medium">
                         {siteConfig.name}
                     </span>
                 </MobileLink>

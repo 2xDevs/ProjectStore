@@ -17,16 +17,12 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { ModeToggle } from "./ModeToggle";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
 
 export default function UserLoggedIn() {
-    const pathname = usePathname();
     const session = useSession();
     const router = useRouter();
     const { setTheme } = useTheme();
@@ -39,24 +35,14 @@ export default function UserLoggedIn() {
         }
     }, [setTheme]);
     return (
-        <div className="flex px-2 py-1 h-10 items-center gap-4">
+        <div className="flex py-1 h-10 items-center gap-4">
+            
             {session.data?.user ? (
                 <>
-                    <Link
-                        href="/profile#my-projects"
-                        className={cn(
-                            "transition-colors hidden md:block text-xs md:text-base hover:text-foreground/80",
-                            pathname === "/profile#my-projects"
-                                ? "text-foreground"
-                                : "text-foreground/60",
-                        )}
-                    >
-                        My Projects
-                    </Link>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Image
-                                className="rounded-full h-8 cursor-pointer"
+                                className="rounded-full h-8 w-8 cursor-pointer"
                                 src={
                                     session.data?.user.image ||
                                     "https://res.cloudinary.com/dckbkdfyi/image/upload/f_auto,q_auto/ooisz8enzqbpeetkditn"
@@ -163,15 +149,14 @@ export default function UserLoggedIn() {
             ) : (
                 <>
                     <Button
-                        variant={"outline"}
-                        className="mr-2 text-base font-medium"
+                        variant={"search"}
+                        className="text-base font-medium p-2 self-center"
                         onClick={async () => {
                             await signIn();
-                        }}
+                            }}
                     >
                         SignIn
                     </Button>
-                    <ModeToggle />
                 </>
             )}
         </div>

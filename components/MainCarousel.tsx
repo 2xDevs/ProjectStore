@@ -23,7 +23,7 @@ export const MainCarousel = ({
     return (
         <Carousel
             plugins={[plugin.current]}
-            className="w-full max-w-screen-lg "
+            className="w-full max-w-screen-lg relative"
             onMouseEnter={plugin.current.stop}
             onMouseLeave={plugin.current.play}
             opts={{
@@ -40,15 +40,15 @@ export const MainCarousel = ({
                                     width={1920}
                                     height={1080}
                                     className="h-full w-full rounded-lg"
-                                    alt="Projects"
+                                    alt={Project.title}
                                 />
                             </Link>
                         </div>
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <CarouselPrevious className="absolute top-1/2 left-4 -translate-y-1/2" />
+            <CarouselNext className="absolute top-1/2 right-4 -translate-y-1/2" />
         </Carousel>
     );
 };

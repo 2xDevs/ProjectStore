@@ -8,48 +8,9 @@ import { usePathname } from "next/navigation";
 
 export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
     const pathname = usePathname()
-    // const [cartItems, setCartItems] = useState<{ items: any[] }>({ items: [] });
-
-    // useEffect(() => {
-    //     if (typeof window !== 'undefined') {
-    //         const storedItems = localStorage.getItem("cartItems");
-    //         if (storedItems) {
-    //             setCartItems(JSON.parse(storedItems));
-    //         } else {
-    //             const initialItems = { items: [] };
-    //             localStorage.setItem("cartItems", JSON.stringify(initialItems));
-    //             setCartItems(initialItems);
-    //         }
-    //     }
-    // }, []);
-
-    // const isInCart = cartItems.items.some(item => item.id === ProjectData.id);
-
-    // function handleAddToCart() {
-    //     if (!isInCart) {
-    //         const updatedItems = [...cartItems.items, {
-    //             id: ProjectData.id,
-    //             image: ProjectData.image,
-    //             title: ProjectData.title,
-    //             price: ProjectData.price,
-    //         }];
-    //         const newCart = { items: updatedItems };
-    //         localStorage.setItem("cartItems", JSON.stringify(newCart));
-    //         setCartItems(newCart);
-    //     }
-    // }
-
-    // function handleRemoveFromCart() {
-    //     const updatedItems = cartItems.items.filter(
-    //         (item) => item.id !== ProjectData.id
-    //     );
-    //     const newCart = { items: updatedItems };
-    //     localStorage.setItem("cartItems", JSON.stringify(newCart));
-    //     setCartItems(newCart);
-    // }
-
+   
     return (
-        <div className="relative overflow-hidden rounded-lg max-w-xs shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-2">
+        <div className="relative overflow-hidden rounded-lg max-w-sm sm:max-w-xs border-foreground shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-2">
             <Link
                 href={`/projects/${ProjectData.id}`}
                 className="absolute inset-0 z-10"
@@ -59,9 +20,9 @@ export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
             </Link>
             <div className="aspect-video relative w-full">
                 <Image
-                    className="object-cover object-center w-full max-h-[200px]"
+                    className="object-cover object-center w-full max-h-[240px] sm:max-h-[200px]"
                     src={ProjectData.image}
-                    alt="Project 1"
+                    alt={ProjectData.title}
                     width={854}
                     height={480}
                 />
@@ -70,12 +31,12 @@ export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
                 </h3>
             </div>
 
-            <div className="bg-white p-4 dark:bg-gray-950">
+            <div className="p-4">
                 <div className="mt-2 flex gap-2 overflow-hidden">
                     {ProjectData.categories.map((category, index) => (
                         <span
                             key={index}
-                            className="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md text-[0.65rem]"
+                            className="bg-muted text-muted-foreground px-2 py-1 rounded-md text-[0.65rem]"
                         >
                             {category}
                         </span>
@@ -83,7 +44,7 @@ export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
                     {ProjectData.languages.map((language, index) => (
                         <span
                             key={index}
-                            className="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md text-[0.65rem]"
+                            className="bg-muted text-muted-foreground px-2 py-1 rounded-md text-[0.65rem]"
                         >
                             {language}
                         </span>
@@ -91,7 +52,7 @@ export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
                 </div>
                 <div className="flex justify-between items-center mt-4">
                     <h4 className="font-semibold text-lg md:text-xl">
-                        {ProjectData.price}
+                        ₹{ProjectData.price}
                     </h4>
                     {pathname === "/" || pathname === "/projects" ? <> <Button
                                 // onClick={handleRemoveFromCart}
