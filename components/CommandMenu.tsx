@@ -198,27 +198,3 @@ export function SearchableProjectList({
         </Link>
     );
 }
-
-/**
- * import React from 'react';
-import cn from 'classnames';
-
-const Button = ({ children, className, ...props }) => {
-  return (
-    <button
-      className={cn(
-        'px-4 py-2 rounded', // Common styles
-        'bg-transparent text-gray-700 border border-gray-300', // Ghost variant styles
-        'hover:bg-gray-100', // Hover effect for ghost variant
-        'md:bg-white md:text-black md:border-black', // Outline variant styles for md and above
-        className // Allow additional custom styles
-      )}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-};
-
-export default Button;
- */

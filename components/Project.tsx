@@ -8,46 +8,7 @@ import { usePathname } from "next/navigation";
 
 export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
     const pathname = usePathname()
-    // const [cartItems, setCartItems] = useState<{ items: any[] }>({ items: [] });
-
-    // useEffect(() => {
-    //     if (typeof window !== 'undefined') {
-    //         const storedItems = localStorage.getItem("cartItems");
-    //         if (storedItems) {
-    //             setCartItems(JSON.parse(storedItems));
-    //         } else {
-    //             const initialItems = { items: [] };
-    //             localStorage.setItem("cartItems", JSON.stringify(initialItems));
-    //             setCartItems(initialItems);
-    //         }
-    //     }
-    // }, []);
-
-    // const isInCart = cartItems.items.some(item => item.id === ProjectData.id);
-
-    // function handleAddToCart() {
-    //     if (!isInCart) {
-    //         const updatedItems = [...cartItems.items, {
-    //             id: ProjectData.id,
-    //             image: ProjectData.image,
-    //             title: ProjectData.title,
-    //             price: ProjectData.price,
-    //         }];
-    //         const newCart = { items: updatedItems };
-    //         localStorage.setItem("cartItems", JSON.stringify(newCart));
-    //         setCartItems(newCart);
-    //     }
-    // }
-
-    // function handleRemoveFromCart() {
-    //     const updatedItems = cartItems.items.filter(
-    //         (item) => item.id !== ProjectData.id
-    //     );
-    //     const newCart = { items: updatedItems };
-    //     localStorage.setItem("cartItems", JSON.stringify(newCart));
-    //     setCartItems(newCart);
-    // }
-
+   
     return (
         <div className="relative overflow-hidden rounded-lg max-w-sm sm:max-w-xs border-foreground shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-2">
             <Link
