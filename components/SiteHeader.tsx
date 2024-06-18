@@ -3,17 +3,20 @@
 import { MainNav } from "@/components/MainNav";
 import { MobileNav } from "@/components/MobileNav";
 import UserLoggedIn from "./UserLoggedIn";
-import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { CommandMenu } from "./CommandMenu";
 import { ProjectsType } from "@/types/project";
 import { Icons } from "./Icons";
+import Link from "next/link";
+import { buttonVariants } from "./ui/button";
+import { cn } from "@/lib/utils";
+import { useEffect } from "react";
 
-export function SiteHeader({AllProjects}: {AllProjects: ProjectsType}) {
+export function SiteHeader({ AllProjects }: { AllProjects: ProjectsType }) {
     const pathname = usePathname();
     useEffect(() => {
         if (typeof window !== "undefined") {
-            if(localStorage.getItem("theme") == null || undefined || ""){
+            if (localStorage.getItem("theme") == null || undefined || "") {
                 localStorage.setItem("theme", "system");
             }
         }
@@ -24,17 +27,16 @@ export function SiteHeader({AllProjects}: {AllProjects: ProjectsType}) {
                 <MobileNav />
                 <MainNav />
                 <div className="flex flex-1 items-center justify-end">
-                    <nav className="flex space-x-2"> 
+                    <nav className="flex space-x-3">
                         <CommandMenu Projects={AllProjects} />
-                        
+
                         <UserLoggedIn />
-                        <div>
-                <Icons.emptyCart className="h-8 w-8" />
-            </div>
+                        <Link href="/cart" className={cn(buttonVariants({variant: "ghost"}), "px-1 pr-2 pt-1")}>
+                            <Icons.emptyCart className="h-8 w-8" />
+                        </Link>
                     </nav>
                 </div>
             </div>
         </header>
     );
 }
-

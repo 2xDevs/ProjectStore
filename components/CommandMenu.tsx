@@ -87,17 +87,17 @@ export function CommandMenu({ Projects }: { Projects: ProjectsType }) {
             <Dialog open={dialogOpen} onOpenChange={handleClose}>
                 <Button
                     variant="search"
-                    className="p-0 md:p-2"
+                    className="p-0 sm:p-2"
                     onClick={() => setDialogOpen(true)}
                 >
-                    <div className="items-center hidden gap-2 md:flex">
+                    <div className="items-center hidden gap-2 sm:flex">
                         <MagnifyingGlassIcon className="h-[1.2rem] w-[1.2rem]" />
                         Search...
                         <kbd className="bg-white/15 p-1.5 rounded-sm text-xs leading-3">
                             {shortcut}
                         </kbd>
                     </div>
-                    <div className="block md:hidden">
+                    <div className="block sm:hidden">
                         <MagnifyingGlassIcon className="h-7 w-7" />
                     </div>
                 </Button>

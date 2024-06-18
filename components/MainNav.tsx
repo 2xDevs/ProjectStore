@@ -21,8 +21,8 @@ export function MainNav() {
                 </span>
             </Link>
             <nav className="hidden lg:flex items-center gap-4 text-sm lg:gap-6">
-                {docsConfig.mainNav.map((item) => (
-                     <Link
+                {docsConfig.mainNav.map((item, index) => (
+                     <Link key={index}
                      href={item.href!}
                      className={cn(
                          "transition-colors hover:text-foreground/80",
