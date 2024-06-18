@@ -87,7 +87,7 @@ export function CommandMenu({ Projects }: { Projects: ProjectsType }) {
             <Dialog open={dialogOpen} onOpenChange={handleClose}>
                 <Button
                     variant="search"
-                    className="p-0 sm:p-2"
+                    className="p-2"
                     onClick={() => setDialogOpen(true)}
                 >
                     <div className="items-center hidden gap-2 sm:flex">
@@ -98,7 +98,7 @@ export function CommandMenu({ Projects }: { Projects: ProjectsType }) {
                         </kbd>
                     </div>
                     <div className="block sm:hidden">
-                        <MagnifyingGlassIcon className="h-7 w-7" />
+                        <MagnifyingGlassIcon className="h-6 w-6" />
                     </div>
                 </Button>
                 <DialogContent className="max-w-2xl gap-0 p-0 ">

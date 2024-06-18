@@ -27,12 +27,11 @@ export function SiteHeader({ AllProjects }: { AllProjects: ProjectsType }) {
                 <MobileNav />
                 <MainNav />
                 <div className="flex flex-1 items-center justify-end">
-                    <nav className="flex space-x-3">
+                    <nav className="flex sm:space-x-3">
                         <CommandMenu Projects={AllProjects} />
-
                         <UserLoggedIn />
                         <Link href="/cart" className={cn(buttonVariants({variant: "ghost"}), "px-1 pr-2 pt-1")}>
-                            <Icons.emptyCart className="h-8 w-8" />
+                            <Icons.emptyCart className="h-6 w-6 sm:h-8 sm:w-8" />
                         </Link>
                     </nav>
                 </div>

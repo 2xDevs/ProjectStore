@@ -17,8 +17,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { ModeToggle } from "./ModeToggle";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -150,15 +149,14 @@ export default function UserLoggedIn() {
             ) : (
                 <>
                     <Button
-                        variant={"outline"}
-                        className="text-base font-medium"
+                        variant={"search"}
+                        className="text-base font-medium p-2 self-center"
                         onClick={async () => {
                             await signIn();
                             }}
                     >
                         SignIn
                     </Button>
-                        <ModeToggle />
                 </>
             )}
         </div>
