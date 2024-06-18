@@ -61,7 +61,7 @@ export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
                 <Image
                     className="object-cover object-center w-full max-h-[200px]"
                     src={ProjectData.image}
-                    alt="Project 1"
+                    alt={ProjectData.title}
                     width={854}
                     height={480}
                 />

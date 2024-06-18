@@ -1,16 +1,17 @@
 import { Project } from "@/components/Project";
 import { UserProfile } from "@/components/UserProfile";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { getMyProjects } from "@/lib/server";
 import { getServerSession } from "next-auth";
 
 export default async function Profile() {
+    console.time("Start Time")
     const session = await getServerSession();
     const UserProjects = await getMyProjects(session?.user?.email!);
     UserProjects?.map((project) => {
         project.price = undefined;
     });
+    console.timeEnd("Start Time")
 
     return (
         <>
@@ -23,7 +24,6 @@ export default async function Profile() {
                             <h2 className="text-3xl font-semibold">
                                 My Projects
                             </h2>
-                            {/* <Button variant="outline">View All</Button> */}
                         </div>
                         <div className="grid gap-x-20 gap-y-8 mt-5 sm:grid-cols-2">
                             {UserProjects!.map((ProjectData, index) => (

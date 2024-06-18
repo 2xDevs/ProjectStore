@@ -7,25 +7,30 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { CommandMenu } from "./CommandMenu";
 import { ProjectsType } from "@/types/project";
+import { Icons } from "./Icons";
 
 export function SiteHeader({AllProjects}: {AllProjects: ProjectsType}) {
     const pathname = usePathname();
     useEffect(() => {
         if (typeof window !== "undefined") {
-            localStorage.setItem("theme", "system");
+            if(localStorage.getItem("theme") == null || undefined || ""){
+                localStorage.setItem("theme", "system");
+            }
         }
     }, []);
     return (
         <header className="sticky top-0 z-50 py-2 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-14 max-w-screen-2xl items-center">
+            <div className="flex mx-auto h-14 max-w-screen-2xl items-center px-3">
                 <MobileNav />
                 <MainNav />
-                <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-                    <div className="w-full flex flex-1 justify-end md:w-auto md:flex-none">
+                <div className="flex flex-1 items-center justify-end">
+                    <nav className="flex space-x-2"> 
                         <CommandMenu Projects={AllProjects} />
-                    </div>
-                    <nav className="flex items-center">
+                        
                         <UserLoggedIn />
+                        <div>
+                <Icons.emptyCart className="h-8 w-8" />
+            </div>
                     </nav>
                 </div>
             </div>

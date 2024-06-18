@@ -14,5 +14,9 @@ export const docsConfig: DocsConfig = {
             title: "Projects",
             href: "/projects",
         },
+        {
+            title: "My Projects",
+            href: "/profile#my-projects",
+        },
     ],
 }
