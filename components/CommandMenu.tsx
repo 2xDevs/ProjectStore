@@ -1,6 +1,6 @@
 "use client";
 
-import { Cross2Icon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import {  MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { Dialog, DialogClose, DialogContent } from "@/components/ui/dialog";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -8,6 +8,7 @@ import { ProjectsType } from "@/types/project";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { XIcon } from "lucide-react";
 
 export function CommandMenu({ Projects }: { Projects: ProjectsType }) {
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -104,16 +105,16 @@ export function CommandMenu({ Projects }: { Projects: ProjectsType }) {
                 <DialogContent className="max-w-2xl gap-0 p-0 ">
                     <div className="flex items-center px-4 py-2 border-b">
                         <MagnifyingGlassIcon className="h-[1.5rem] w-[1.5rem]" />
-                        <Input
+                        <input
                             type="text"
-                            placeholder="Type title"
-                            className="text-base border-none shadow-none focus-visible:outline-none focus-visible:ring-0"
+                            placeholder="Search Projects ..."
+                            className="text-base w-full h-10 px-3 py-2 rounded-md bg-background placeholder:text-muted-foreground focus:outline-none"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                         />
                         <DialogClose>
-                            <Cross2Icon className="w-4 h-4" />
-                            <span className="sr-only">Close</span>
+                            <XIcon className="h-4 w-4"/>
+                        <span className="sr-only">Close</span>
                         </DialogClose>
                     </div>
                     <div

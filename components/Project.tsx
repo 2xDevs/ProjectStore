@@ -7,8 +7,8 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
-    const pathname = usePathname()
-   
+    const pathname = usePathname();
+
     return (
         <div className="relative overflow-hidden rounded-lg max-w-sm sm:max-w-xs border-foreground shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-2">
             <Link
@@ -26,7 +26,7 @@ export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
                     width={854}
                     height={480}
                 />
-                <h3 className="absolute bottom-0 px-2 pb-2 [text-shadow:1px_1px_20px_black,_0_0_0.2em_black,_0_0_2em_black]  w-full font-bold text-xl">
+                <h3 className="absolute bottom-0 px-2 pb-2 text-white [text-shadow:1px_1px_20px_black,_0_0_0.2em_black,_0_0_2em_black] w-full font-bold text-xl">
                     {ProjectData.title}
                 </h3>
             </div>
@@ -51,14 +51,22 @@ export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
                     ))}
                 </div>
                 <div className="flex justify-between items-center mt-4">
-                    <h4 className="font-semibold text-lg md:text-xl">
-                        ₹{ProjectData.price}
-                    </h4>
-                    {pathname === "/" || pathname === "/projects" ? <> <Button
+                    {ProjectData.price && (
+                        <h4 className="font-semibold text-lg md:text-xl">
+                            ₹{ProjectData.price}
+                        </h4>
+                    )}
+
+                    {pathname === "/" || pathname === "/projects" ? (
+                        <>
+                            <Button
+                                className="text-xs h-fit px-3 sm:h-full sm:text-sm sm:px-4"
                                 // onClick={handleRemoveFromCart}
                             >
                                 View Project
-                            </Button></> : (ProjectData.price ? (
+                            </Button>
+                        </>
+                    ) : ProjectData.price ? (
                         // isInCart ? (
                         //     <Button
                         //         className="z-20 bg-destructive"
@@ -77,8 +85,7 @@ export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
                         <></>
                     ) : (
                         <Button className="z-20 w-full">Download</Button>
-                    ))}
-                    
+                    )}
                 </div>
             </div>
         </div>
