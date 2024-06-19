@@ -1,8 +1,16 @@
-import { ProjectType } from "@/types/project";
+import { CartType, ProjectType } from "@/types/project";
 import Image from "next/image";
-import AddToCartButton from './AddToCartButton';
+import AddToCartButton from "./AddToCartButton";
 
 export const SingleProject = ({ Project }: { Project: ProjectType | null }) => {
+    const cartItem: CartType = {
+        id: Project?.id!,
+        title: Project?.title!,
+        image: Project?.image!,
+        categories: Project?.categories!,
+        languages: Project?.languages!,
+        price: Project?.price!,
+    };
     return (
         <>
             <section className="w-full relative">
@@ -42,9 +50,9 @@ export const SingleProject = ({ Project }: { Project: ProjectType | null }) => {
                             </h1>
                             <div className="flex items-center justify-between pt-2">
                                 <div className="text-xl font-bold">
-                                ₹{Project?.price}
+                                    ₹{Project?.price}
                                 </div>
-                                <AddToCartButton project={Project!} />
+                                <AddToCartButton project={cartItem!} />
                             </div>
                         </div>
                         <div className="text-xl md:text-2xl font-semibold">

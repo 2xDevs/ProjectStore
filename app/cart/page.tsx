@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useCart } from "@/hooks/use-cart";
 import { Icons } from "@/components/Icons";
+import Image from "next/image";
 
 export default function CartComponent() {
     const { items, removeItem } = useCart();
@@ -40,7 +41,7 @@ export default function CartComponent() {
                                 key={project.id}
                                 className="bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-md"
                             >
-                                <img
+                                <Image
                                     src={project.image}
                                     alt={project.title}
                                     width={400}
