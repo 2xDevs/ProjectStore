@@ -1,13 +1,18 @@
 import React from "react";
 import { MainCarousel } from "@/components/MainCarousel";
 import { getAllCachedProjects } from "@/lib/server";
-import { ProjectsType } from "@/types/project";
-import { Project } from "@/components/Project";
-import { buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { ArrowRightIcon } from "@radix-ui/react-icons";
-import { ChevronsRight } from "lucide-react";
+import dynamic from "next/dynamic";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ProjectSkeleton } from "@/components/ProjectSkeleton";
+
+const DynamicComponent = dynamic(
+    () =>
+        import("@/components/ProjectSection").then((mod) => mod.ProjectSection),
+    {
+        loading: () => <ProjectSectionSkeleton />,
+        ssr: false,
+    },
+);
 
 export default async function Home() {
     const CarouselProjects = await getAllCachedProjects();
@@ -36,7 +41,7 @@ export default async function Home() {
             </section>
 
             {ProjectSectionData.map((SectionData, index) => (
-                <ProjectSection
+                <DynamicComponent
                     key={index}
                     id={SectionData.id}
                     title={SectionData.title}
@@ -47,51 +52,22 @@ export default async function Home() {
     );
 }
 
-const ProjectSection = ({
-    id,
-    title,
-    Projects,
-}: {
-    id: string;
-    title: string;
-    Projects: ProjectsType | null;
-}) => {
+const ProjectSectionSkeleton = () => {
     return (
-        <section id={id} className="w-full py-12 md:py-24 lg:py-32">
+        <section className="w-full py-12 md:py-24 lg:py-32">
             <div className="container grid gap-8 place-items-center md:px-6">
                 <div className="flex w-full items-center justify-center sm:justify-between">
-                    <Link
-                        href="/projects"
-                        className="group text-2xl flex items-center font-bold sm:hidden"
-                    >
-                        {title}
-                        <span className="ml-1 group-hover:translate-x-1 transition-transform duration-100">
-                           <ChevronsRight />
-                        </span>
-                    </Link>
-                    <h2 className="hidden sm:flex font-bold md:text-4xl">
-                        {title}
-                    </h2>
-                    <Link
-                        href="/projects"
-                        prefetch={true}
-                        className={cn(
-                            buttonVariants({ variant: "outline" }),
-                            "group hidden sm:flex",
-                        )}
-                    >
-                        View All
-                        <span className="ml-1 group-hover:translate-x-1 transition-transform duration-100">
-                            <ArrowRightIcon />
-                        </span>
-                    </Link>
+                    <Skeleton className="hidden sm:flex h-12 w-80" />
+                    <Skeleton className="hidden sm:flex h-10 w-32" />
+                    <Skeleton className="sm:hidden h-12 min-w-48 max-w-80" />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {Projects?.map((ProjectData, index) => (
-                        <Project key={index} ProjectData={ProjectData} />
+                    {Array.from({ length: 4 }, (_, index) => (
+                        <ProjectSkeleton key={index} />
                     ))}
                 </div>
             </div>
         </section>
     );
 };
+

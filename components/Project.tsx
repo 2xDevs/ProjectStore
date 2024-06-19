@@ -3,14 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { ProjectType } from "@/types/project";
-import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
     const pathname = usePathname();
 
     return (
-        <div className="relative overflow-hidden rounded-lg max-w-sm sm:max-w-xs border-foreground shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-2">
+        <div className="relative rounded-lg max-w-sm sm:max-w-xs border bg-card shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-2">
             <Link
                 href={`/projects/${ProjectData.id}`}
                 className="absolute inset-0 z-10"
@@ -18,9 +17,9 @@ export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
             >
                 <span className="sr-only">View Project</span>
             </Link>
-            <div className="aspect-video relative w-full">
+            <div className="aspect-[16/10] relative w-full rounded-lg">
                 <Image
-                    className="object-cover object-center w-full max-h-[240px] sm:max-h-[200px]"
+                    className="object-cover object-center w-full max-h-[240px] sm:max-h-[200px] rounded-lg"
                     src={ProjectData.image}
                     alt={ProjectData.title}
                     width={854}
