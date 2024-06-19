@@ -93,7 +93,8 @@ export function CommandMenu({ Projects }: { Projects: ProjectsType }) {
                 >
                     <div className="items-center hidden gap-2 sm:flex">
                         <MagnifyingGlassIcon className="h-[1.2rem] w-[1.2rem]" />
-                        Search...
+                        <span className="hidden lg:block mr-2">Search Projects...</span>
+                        <span className="hidden sm:block lg:hidden mr-2">Search...</span>
                         <kbd className="bg-white/15 p-1.5 rounded-sm text-xs leading-3">
                             {shortcut}
                         </kbd>

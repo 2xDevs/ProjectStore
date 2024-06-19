@@ -42,7 +42,7 @@ export default function UserLoggedIn() {
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Image
-                                className="rounded-full h-6 w-6 sm:h-8 sm:w-8 mx-2 mr-3 md:mx-4 cursor-pointer"
+                                className="rounded-full h-6 w-6 sm:h-8 sm:w-8 mx-2 cursor-pointer"
                                 src={
                                     session.data?.user.image ||
                                     "https://res.cloudinary.com/dckbkdfyi/image/upload/f_auto,q_auto/ooisz8enzqbpeetkditn"
