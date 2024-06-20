@@ -58,6 +58,8 @@ export async function getMyProjects(
     email: string
 ): Promise<ProjectsType | null> {
     try {
+        if(!email)
+            throw Error
         const projects = await prisma.userProject
             .findMany({
                 where: {

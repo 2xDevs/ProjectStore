@@ -5,6 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { useCart } from "@/hooks/use-cart";
 import { Icons } from "@/components/Icons";
 import Image from "next/image";
+import CheckoutButton from "@/components/CheckOut";
 
 export default function CartComponent() {
     const { items, removeItem } = useCart();
@@ -89,9 +90,7 @@ export default function CartComponent() {
                             <span>₹{total.toFixed(2)}</span>
                         </div>
                     </div>
-                    <Button size="lg" className="w-full mt-6">
-                        Proceed to Checkout
-                    </Button>
+                        <CheckoutButton amount={total}/>
                 </div>
             </div>
         </div>
