@@ -19,7 +19,7 @@ export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
             </Link>
             <div className="aspect-[16/10] relative w-full rounded-lg">
                 <Image
-                    className="object-cover object-center w-full max-h-[240px] sm:max-h-[200px] rounded-lg"
+                    className="object-cover object-center w-full max-h-[240px] sm:max-h-[200px] rounded-lg rounded-bl-none rounded-br-none"
                     src={ProjectData.image}
                     alt={ProjectData.title}
                     width={854}
@@ -31,7 +31,7 @@ export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
             </div>
 
             <div className="p-4">
-                <div className="mt-2 flex gap-2 overflow-hidden">
+                <div className="mt-2 flex flex-1 gap-2 overflow-hidden">
                     {ProjectData.categories.map((category, index) => (
                         <span
                             key={index}

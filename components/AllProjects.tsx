@@ -16,7 +16,7 @@ const languages = [
     "PYTHON",
     "HTML",
     "CSS",
-    "JAVASCRIPT",
+    "JS",
     "REACT",
     "ANGULAR",
     "VUE",
@@ -55,9 +55,9 @@ export const AllProjects = ({projects}: {projects: ProjectsType | null}) => {
     );
 
     return (
-        <div className="flex max-h-screen  max-w-screen-2xl mx-auto">
+        <div className="flex max-h-screen max-w-screen-2xl mx-auto">
             <div className="bg-white hidden lg:block dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800 w-64 p-6">
-                <div className="flex mb-4 h-8 items-center justify-between ">
+                <div className="flex mb-4 h-8 items-center justify-between">
                     <h2 className="text-lg font-semibold">Filter Projects</h2>
                     {(selectedCategories.length > 0 ||
                         selectedLanguages.length > 0) && (
@@ -102,7 +102,7 @@ export const AllProjects = ({projects}: {projects: ProjectsType | null}) => {
                 </div>
             </div>
             <div className="flex-1 p-6 overflow-y-auto">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:col-span-3 gap-y-8 gap-x-6">
+                <div className="grid grid-cols-1 place-items-center sm:grid-cols-2 md:grid-cols-3 lg:col-span-3 gap-y-8 gap-x-6">
                     {filteredProjects.map((ProjectData, index) => (
                         <Project key={index} ProjectData={ProjectData} />
                     ))}

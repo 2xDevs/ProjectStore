@@ -19,12 +19,12 @@ export default async function Profile() {
                 <div className="grid">
                     <div>
                         <div className="flex items-center justify-between">
-                            <h2 className="text-3xl font-semibold">
+                            <h2 className="text-3xl text-center font-semibold">
                                 My Projects
                             </h2>
                         </div>
-                        <div className="grid gap-x-20 gap-y-8 mt-5 sm:grid-cols-2">
-                            {UserProjects!.map((ProjectData, index) => (
+                        <div className="grid grid-cols-1 place-items-center gap-x-20 gap-y-8 mt-5 sm:grid-cols-2">
+                            {UserProjects?.map((ProjectData, index) => (
                                 <Project
                                     key={index}
                                     ProjectData={ProjectData}

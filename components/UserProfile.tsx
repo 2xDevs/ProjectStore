@@ -7,7 +7,7 @@ export const UserProfile = () => {
     const session = useSession();
     return (
         <>
-            <div className="flex items-center gap-6">
+            <div className="flex flex-col gap-6 items-center sm:flex-row">
                 <Avatar className="h-20 w-20">
                     <Image
                         className="rounded-full h-20 w-20"
@@ -21,7 +21,7 @@ export const UserProfile = () => {
                     />
                 </Avatar>
                 <div id="my-projects" className="grid gap-1">
-                    <div className="text-2xl font-bold">
+                    <div className="text-2xl font-bold text-center sm:text-start">
                         {session.data?.user?.name}
                     </div>
                     <div className="text-gray-500 dark:text-gray-400">
