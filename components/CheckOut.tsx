@@ -27,7 +27,7 @@ export default function CheckoutButton({ amount }: { amount: number }) {
             currency: "INR",
             name: "2xDevs",
             description: "Test Transaction",
-            image: "https://res.cloudinary.com/dckbkdfyi/image/upload/f_auto,q_auto/v1/2xDevs/kykhjyy41grbyikh5un0",
+            image: "https://res.cloudinary.com/dckbkdfyi/image/upload/f_auto,q_auto/v1/2xDevs/ly6wbb5528kwfuu3ebjp",
             order_id: data.orderId,
             handler: async function (response: {
                 razorpay_payment_id: any;
@@ -64,7 +64,7 @@ export default function CheckoutButton({ amount }: { amount: number }) {
                 address: "Razorpay Corporate Office",
             },
             theme: {
-                color: "#3399cc",
+                color: "#000000",
             },
         };
 
@@ -95,7 +95,6 @@ export default function CheckoutButton({ amount }: { amount: number }) {
 
     return (
         <>
-            orderId: {orderId}
             <Button onClick={createOrder} size="lg" className="w-full mt-6">
                 Proceed to Checkout
             </Button>

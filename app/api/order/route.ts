@@ -11,11 +11,11 @@ export async function POST(req: NextRequest) {
     let options = {
         amount: amount,
         currency: "INR",
-        receipt: "order_rcptid_11",
+        receipt: `receipt_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
     };
     try {
         const orderDetails = await instance.orders.create(options);
-        console.log("orderId: ", orderDetails.id);
+        console.log(orderDetails);
         return NextResponse.json({ orderId: orderDetails.id });
     } catch (error) {
         console.error("Error creating Razorpay order:", error);

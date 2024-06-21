@@ -15,7 +15,7 @@ export default function CartComponent() {
         0
     );
 
-    const discount = items.length > 0 ? 10 : 0;
+    const discount = items.length > 0 ? 1000 : 0;
     const total = subtotal - discount;
 
     return (
@@ -55,7 +55,7 @@ export default function CartComponent() {
                                     </h3>
                                     <div className="flex items-center justify-between mt-2">
                                         <div className="font-semibold">
-                                            ₹{project.price!}
+                                            ₹{(project.price! / 100)}
                                         </div>
                                         <Button
                                             variant="outline"
@@ -78,16 +78,16 @@ export default function CartComponent() {
                     <div className="grid gap-2">
                         <div className="flex items-center justify-between">
                             <span>Subtotal</span>
-                            <span>₹{subtotal.toFixed(2)}</span>
+                            <span>₹{(subtotal / 100).toFixed(2)}</span>
                         </div>
                         <div className="flex items-center justify-between">
                             <span>Discount</span>
-                            <span>-₹{discount.toFixed(2)}</span>
+                            <span>-₹{(discount / 100).toFixed(2)}</span>
                         </div>
                         <Separator />
                         <div className="flex items-center justify-between font-bold">
                             <span>Total</span>
-                            <span>₹{total.toFixed(2)}</span>
+                            <span>₹{(total / 100).toFixed(2)}</span>
                         </div>
                     </div>
                         <CheckoutButton amount={total}/>

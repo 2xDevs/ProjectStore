@@ -50,7 +50,7 @@ export const SingleProject = ({ Project }: { Project: ProjectType | null }) => {
                             </h1>
                             <div className="flex items-center justify-between pt-2">
                                 <div className="text-xl font-bold">
-                                    ₹{Project?.price}
+                                    ₹{(Project?.price! / 100)}
                                 </div>
                                 <AddToCartButton project={cartItem!} />
                             </div>

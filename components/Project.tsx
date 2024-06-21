@@ -52,7 +52,7 @@ export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
                 <div className="flex justify-between items-center mt-4">
                     {ProjectData.price && (
                         <h4 className="font-semibold text-lg md:text-xl">
-                            ₹{ProjectData.price}
+                            ₹{(ProjectData.price / 100)}
                         </h4>
                     )}
 
