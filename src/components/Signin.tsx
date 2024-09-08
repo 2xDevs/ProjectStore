@@ -44,12 +44,20 @@ export const Signin = () => {
                     <Button type="submit" className="w-full">
                         Login
                     </Button>
-                    <Button onClick={() => signIn("google")} variant="outline" className="w-full">
-                        <Icons.google className="h-5 w-5 mr-3" />
+                    <Button
+                        onClick={() => signIn("google")}
+                        variant="outline"
+                        className="w-full"
+                    >
+                        <Icons.google className="mr-3 h-5 w-5" />
                         <span>Login with Google</span>
                     </Button>
-                    <Button onClick={() => signIn("github")} variant="outline" className="w-full">
-                        <Icons.gitHub className="h-5 w-5 mr-3" />
+                    <Button
+                        onClick={() => signIn("github")}
+                        variant="outline"
+                        className="w-full"
+                    >
+                        <Icons.gitHub className="mr-3 h-5 w-5" />
                         <span>Login with Github</span>
                     </Button>
                 </div>
