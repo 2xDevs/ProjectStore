@@ -4,31 +4,37 @@ import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { useCart } from "@/hooks/use-cart";
 import { CartType } from "@/types/project";
-
+import { ShoppingCart, Trash2Icon } from "lucide-react";
 
 const AddToCartButton = ({ project }: { project: CartType }) => {
-    const { addItem } = useCart();
-    const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const { items, addItem, removeItem } = useCart();
+  const [isExists, setIsExists] = useState<boolean>();
 
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            setIsSuccess(false);
-        }, 1000);
+  useEffect(() => {
+    if (items.find((item) => item.project.id === project.id)) setIsExists(true);
+    else setIsExists(false);
+  }, [project, items]);
 
-        return () => clearTimeout(timeout);
-    }, [isSuccess]);
-
-    return (
-        <Button
-            onClick={() => {
-                addItem(project);
-                setIsSuccess(true);
-            }}
-            className="w-2/4 sm:w-1/4"
-        >
-            {isSuccess ? "Added!" : "Add to cart"}
-        </Button>
-    );
+  return isExists ? (
+    <Button
+      onClick={() => {
+        removeItem(project.id);
+      }}
+      variant={"destructive"}
+      className="w-full"
+    >
+      <Trash2Icon className="mr-2 h-4 w-4" /> Remove
+    </Button>
+  ) : (
+    <Button
+      onClick={() => {
+        addItem(project);
+      }}
+      className="w-full"
+    >
+      <ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart
+    </Button>
+  );
 };
 
 export default AddToCartButton;
