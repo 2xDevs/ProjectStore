@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Providers } from "./providers";
 import { getAllCachedProjects } from "@/lib/server";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default async function RootLayout({
                     >
                         <SiteHeader AllProjects={AllProjects!} />
                         {children}
+                        <Footer />
                     </ThemeProvider>
                 </Providers>
             </body>
