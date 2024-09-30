@@ -1,6 +1,6 @@
 "use client";
 
-import {  MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { Dialog, DialogClose, DialogContent } from "@/components/ui/dialog";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -90,11 +90,15 @@ export function CommandMenu({ Projects }: { Projects: ProjectsType }) {
                     className="p-2"
                     onClick={() => setDialogOpen(true)}
                 >
-                    <div className="items-center hidden gap-2 sm:flex">
+                    <div className="hidden items-center gap-2 sm:flex">
                         <MagnifyingGlassIcon className="h-[1.2rem] w-[1.2rem]" />
-                        <span className="hidden lg:block mr-2">Search Projects...</span>
-                        <span className="hidden sm:block lg:hidden mr-2">Search...</span>
-                        <kbd className="bg-white/15 p-1.5 rounded-sm text-xs leading-3">
+                        <span className="mr-2 hidden lg:block">
+                            Search Projects...
+                        </span>
+                        <span className="mr-2 hidden sm:block lg:hidden">
+                            Search...
+                        </span>
+                        <kbd className="rounded-sm bg-white/15 p-1.5 text-xs leading-3">
                             {shortcut}
                         </kbd>
                     </div>
@@ -102,19 +106,19 @@ export function CommandMenu({ Projects }: { Projects: ProjectsType }) {
                         <MagnifyingGlassIcon className="h-6 w-6" />
                     </div>
                 </Button>
-                <DialogContent className="max-w-2xl gap-0 p-0 ">
-                    <div className="flex items-center px-4 py-2 border-b">
+                <DialogContent className="max-w-2xl gap-0 p-0">
+                    <div className="flex items-center border-b px-4 py-2">
                         <MagnifyingGlassIcon className="h-[1.5rem] w-[1.5rem]" />
                         <input
                             type="text"
                             placeholder="Search Projects ..."
-                            className="text-base w-full h-10 px-3 py-2 rounded-md bg-background placeholder:text-muted-foreground focus:outline-none"
+                            className="h-10 w-full rounded-md bg-background px-3 py-2 text-base placeholder:text-muted-foreground focus:outline-none"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                         />
                         <DialogClose>
-                            <XIcon className="h-4 w-4"/>
-                        <span className="sr-only">Close</span>
+                            <XIcon className="h-4 w-4" />
+                            <span className="sr-only">Close</span>
                         </DialogClose>
                     </div>
                     <div
@@ -126,7 +130,7 @@ export function CommandMenu({ Projects }: { Projects: ProjectsType }) {
                                 key={Project.id}
                                 className={`p-2 ${index === selectedIndex ? "bg-blue-600/20" : ""}`}
                             >
-                                <Link href={`/proects/${Project.id}`} passHref>
+                                <Link href={`/projects/${Project.id}`} passHref>
                                     <p
                                         id={`track-link-${index}`}
                                         tabIndex={-1}
@@ -166,12 +170,12 @@ export function SearchableProjectList({
 }) {
     return (
         <Link href={`/projects/${id}`}>
-            <div className="flex gap-2 px-4 py-2 border-b hover:bg-slate-100 dark:hover:bg-slate-800">
+            <div className="flex gap-2 border-b px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800">
                 <Image
                     src={image}
                     width={1920}
                     height={1080}
-                    className="max-w-full w-12 object-cover aspect-square rounded"
+                    className="aspect-square w-12 max-w-full rounded object-cover"
                     alt={title}
                 />
                 <div className="w-[90%]">
@@ -180,7 +184,7 @@ export function SearchableProjectList({
                         {categories.map((category, index) => (
                             <span
                                 key={index}
-                                className="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md text-[0.65rem]"
+                                className="rounded-md bg-gray-100 px-2 py-1 text-[0.65rem] text-gray-600 dark:bg-gray-800 dark:text-gray-400"
                             >
                                 {category}
                             </span>
@@ -188,7 +192,7 @@ export function SearchableProjectList({
                         {languages.map((language, index) => (
                             <span
                                 key={index}
-                                className="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md text-[0.65rem]"
+                                className="rounded-md bg-gray-100 px-2 py-1 text-[0.65rem] text-gray-600 dark:bg-gray-800 dark:text-gray-400"
                             >
                                 {language}
                             </span>

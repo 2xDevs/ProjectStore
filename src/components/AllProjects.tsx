@@ -9,24 +9,7 @@ import { Label } from "./ui/label";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { FilterIcon } from "lucide-react";
-
-const categories = ["AI", "ML", "NLP", "WEB", "APP", "DS", "DL"];
-const languages = [
-    "C",
-    "C++",
-    "C#",
-    "JAVA",
-    "PYTHON",
-    "HTML",
-    "CSS",
-    "JS",
-    "REACT",
-    "ANGULAR",
-    "VUE",
-    "NEXT",
-    "PHP",
-    "KOTLIN",
-];
+import { CATEGORIES, LANGUAGES } from "@/static/data";
 
 export const AllProjects = ({
     projects,
@@ -82,7 +65,7 @@ export const AllProjects = ({
                 <div className="space-y-4">
                     <FilterSection
                         title="Categories"
-                        items={categories}
+                        items={CATEGORIES}
                         selectedItems={selectedCategories}
                         onChange={(category) =>
                             handleToggle(
@@ -94,7 +77,7 @@ export const AllProjects = ({
                     />
                     <FilterSection
                         title="Languages"
-                        items={languages}
+                        items={LANGUAGES}
                         selectedItems={selectedLanguages}
                         onChange={(language) =>
                             handleToggle(
@@ -226,7 +209,7 @@ const MobileFilterSection = ({
                     <div className="space-y-4">
                         <FilterSection
                             title="Categories"
-                            items={categories}
+                            items={CATEGORIES}
                             selectedItems={selectedCategories}
                             onChange={(category) =>
                                 handleToggle(
@@ -238,7 +221,7 @@ const MobileFilterSection = ({
                         />
                         <FilterSection
                             title="Languages"
-                            items={languages}
+                            items={LANGUAGES}
                             selectedItems={selectedLanguages}
                             onChange={(language) =>
                                 handleToggle(
