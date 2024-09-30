@@ -100,7 +100,7 @@ export const AllProjects = ({
                 </div>
                 <div className="grid grid-cols-1 place-items-center gap-x-6 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:col-span-3">
                     {filteredProjects.map((ProjectData, index) => (
-                        <Project key={index} ProjectData={ProjectData} />
+                        <Project key={index} project={ProjectData} />
                     ))}
                 </div>
             </div>
