@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
     Card,
     CardContent,
@@ -15,10 +15,20 @@ import {
     Star,
     ChevronLeft,
     ChevronRight,
+    ChevronsRight,
+    ArrowRightIcon,
 } from "lucide-react";
 import Link from "next/link";
+import { MainCarousel } from "@/components/MainCarousel";
+import { cn } from "@/lib/utils";
+import { ProjectsType } from "@/types/project";
 
-export default function HomePage() {
+export default function HomePage({
+    CarouselProjects,
+}: {
+    CarouselProjects: ProjectsType | null;
+}) {
+    console.log(CarouselProjects);
     const [currentSlide, setCurrentSlide] = useState(0);
 
     const featuredProjects = [
@@ -29,7 +39,7 @@ export default function HomePage() {
                 "A machine learning-based chatbot with natural language processing capabilities.",
             price: 49.99,
             rating: 4.5,
-            language: "Python",
+            language: ["Python", "AI", "ML", "NLP"],
             image: "https://ideogram.ai/assets/image/lossless/response/-rmhqdJlQ6-ndFvD3-e8gw",
         },
         {
@@ -39,7 +49,7 @@ export default function HomePage() {
                 "Secure and transparent voting system built on blockchain technology.",
             price: 79.99,
             rating: 4.8,
-            language: "JavaScript",
+            language: ["JavaScript", "AI", "ML", "NLP"],
             image: "https://ideogram.ai/assets/image/lossless/response/YHZ25yOGQ8qW8IrV5tLYiQ",
         },
         {
@@ -49,7 +59,7 @@ export default function HomePage() {
                 "Mobile app for AR-based indoor navigation and point of interest discovery.",
             price: 59.99,
             rating: 4.2,
-            language: "Swift",
+            language: ["Swift", "AI", "ML", "NLP"],
             image: "https://ideogram.ai/assets/image/lossless/response/xQJh_3YNTLuDSYixVfj1tg",
         },
         {
@@ -59,7 +69,7 @@ export default function HomePage() {
                 "Scalable and fault-tolerant distributed file system for cloud storage.",
             price: 89.99,
             rating: 4.7,
-            language: "Go",
+            language: ["Go", "AI", "ML", "NLP"],
             image: "https://ideogram.ai/assets/image/lossless/response/xn5qcK6QSkaCp9XD9qk3Xg",
         },
     ];
@@ -72,7 +82,7 @@ export default function HomePage() {
                 "Simulate and visualize quantum algorithms on a classical computer.",
             price: 69.99,
             rating: 4.6,
-            language: "Q#",
+            language: ["Q#", "AI", "ML", "NLP"],
             image: "https://ideogram.ai/assets/image/lossless/response/0qnMM6VESPyCQSSQLWhOdQ",
         },
         {
@@ -82,7 +92,8 @@ export default function HomePage() {
                 "Central control system for managing various IoT devices in a smart home.",
             price: 54.99,
             rating: 4.3,
-            language: "C++",
+            language: ["C++", "AI", "ML", "NLP"],
+
             image: "https://ideogram.ai/assets/image/lossless/response/bxYNygdmRV2_YyUXP9oMXw",
         },
         {
@@ -92,7 +103,7 @@ export default function HomePage() {
                 "Solve complex optimization problems using genetic algorithms.",
             price: 39.99,
             rating: 4.4,
-            language: "Java",
+            language: ["Java", "AI", "ML", "NLP"],
             image: "https://ideogram.ai/assets/image/lossless/response/lkZwsa4DRfSEbNH4lZ65wQ",
         },
         {
@@ -102,7 +113,7 @@ export default function HomePage() {
                 "Apply artistic styles to images using deep learning techniques.",
             price: 44.99,
             rating: 4.1,
-            language: "Python",
+            language: ["Python", "AI", "ML", "NLP"],
             image: "https://ideogram.ai/assets/image/lossless/response/mGl4oc-6QvaFVCtAVJv4Og",
         },
     ];
@@ -115,7 +126,7 @@ export default function HomePage() {
                 "Interactive tool for visualizing common data structures and algorithms.",
             price: 29.99,
             rating: 4.7,
-            language: "JavaScript",
+            language: ["JavaScript", "AI", "ML", "NLP"],
             image: "https://ideogram.ai/assets/image/lossless/response/-rmhqdJlQ6-ndFvD3-e8gw",
         },
         {
@@ -125,7 +136,7 @@ export default function HomePage() {
                 "A simple compiler implementation for a basic programming language.",
             price: 34.99,
             rating: 4.5,
-            language: "C",
+            language: ["C", "AI", "ML", "NLP"],
             image: "https://ideogram.ai/assets/image/lossless/response/YHZ25yOGQ8qW8IrV5tLYiQ",
         },
         {
@@ -135,7 +146,7 @@ export default function HomePage() {
                 "Modular framework for building efficient web scrapers and crawlers.",
             price: 24.99,
             rating: 4.2,
-            language: "Python",
+            language: ["Python", "AI", "ML", "NLP"],
             image: "https://ideogram.ai/assets/image/lossless/response/xQJh_3YNTLuDSYixVfj1tg",
         },
         {
@@ -145,7 +156,7 @@ export default function HomePage() {
                 "Lightweight 2D game engine for creating simple games and prototypes.",
             price: 39.99,
             rating: 4.6,
-            language: "C++",
+            language: ["C++", "AI", "ML", "NLP"],
             image: "https://ideogram.ai/assets/image/lossless/response/xn5qcK6QSkaCp9XD9qk3Xg",
         },
     ];
@@ -180,101 +191,81 @@ export default function HomePage() {
     return (
         <main className="w-screen">
             {/* Hero Section */}
-            <section className="flex min-h-screen w-full items-center justify-center bg-secondary py-12 text-white md:py-24 lg:py-32 xl:py-48">
-                <div className="container px-4 md:px-6">
-                    <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-2">
-                        <div className="space-y-4">
-                            <h1 className="max-w-xl text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                                Elevate Your Coding Projects
-                            </h1>
-                            <p className="max-w-[600px] text-gray-200 md:text-xl">
-                                Access premium computer science project source
-                                code. Build your portfolio, learn new
-                                technologies, and accelerate your development
-                                process.
-                            </p>
-                            <div className="space-y-4 sm:space-x-4 sm:space-y-0">
-                                <Button className="bg-white text-purple-700 hover:bg-gray-100">
-                                    <Link href={"#"}>Get Started</Link>
-                                </Button>
-                                <Button
-                                    variant="outline"
-                                    className="border-white bg-transparent text-white hover:bg-white hover:text-purple-700"
-                                >
-                                    <Link href={"/projects"}>
-                                        View Projects
-                                    </Link>
-                                </Button>
-                            </div>
+            <section
+                id="hero"
+                className="pt-12 sm:flex sm:min-h-[calc(100dvh-4.6rem)] sm:items-center sm:pt-0 lg:block xl:pt-40"
+            >
+                <div className="mx-auto flex max-w-screen-2xl px-4">
+                    <div className="mx-auto w-full sm:w-3/4 md:w-10/12 xl:w-2/5">
+                        <h1 className="text-balance py-6 text-center text-4xl font-bold sm:text-5xl md:text-7xl lg:text-balance lg:text-7xl xl:text-start">
+                            Elevate Your Coding Projects
+                        </h1>
+                        <p className="mx-auto mb-12 max-w-[600px] text-center text-sm tracking-tight text-muted-foreground md:text-xl xl:text-start">
+                            Access premium computer science project source code.
+                            Build your portfolio, learn new technologies, and
+                            accelerate your development process.
+                        </p>
+                        <div className="flex justify-center gap-4 xl:justify-start">
+                            <Button>
+                                <Link href={"#"}>Get Started</Link>
+                            </Button>
+                            <Button
+                                className="border-2 text-primary hover:border-primary hover:bg-primary hover:text-primary-foreground"
+                                variant="outline"
+                            >
+                                <Link href={"/projects"}>View Projects</Link>
+                            </Button>
                         </div>
-                        <div className="hidden lg:block">
-                            <img
-                                src="https://ideogram.ai/assets/image/lossless/response/cNSZoG_1SAi0Y6JHFMWPyw"
-                                alt="Coding Projects"
-                                width={600}
-                                height={400}
-                                className="rounded-lg shadow-lg"
-                            />
-                        </div>
+                    </div>
+                    <div className="hidden flex-1 xl:block">
+                        <MainCarousel CarouselProjects={CarouselProjects} />
                     </div>
                 </div>
             </section>
 
             {/* Featured Projects Section */}
-            <section className="ite flex w-screen justify-center bg-background py-12 md:py-24">
-                <div className="container px-4 md:px-6">
-                    <h2 className="mb-8 text-center text-3xl font-bold tracking-tighter sm:text-4xl">
-                        Featured Projects
-                    </h2>
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                        {featuredProjects.map((project) => (
-                            <Card
-                                key={project.id}
-                                className="flex h-full flex-col"
-                            >
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    width={300}
-                                    height={200}
-                                    className="h-48 w-full rounded-t-lg object-cover"
-                                />
-                                <CardHeader>
-                                    <CardTitle className="line-clamp-1">
-                                        {project.title}
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent className="flex-1">
-                                    <p className="line-clamp-2 text-muted-foreground">
-                                        {project.description}
-                                    </p>
-                                    <div className="mt-4 flex items-center">
-                                        <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                                        <span className="ml-2 text-sm">
-                                            {project.rating.toFixed(1)}
-                                        </span>
-                                    </div>
-                                    <div className="mt-2 inline-block rounded bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800">
-                                        {project.language}
-                                    </div>
-                                </CardContent>
-                                <CardFooter className="flex items-center justify-between">
-                                    <span className="text-2xl font-bold">
-                                        ₹{project.price.toFixed(2)}
-                                    </span>
-                                    <Button className="bg-green-500 hover:bg-green-600">
-                                        <ShoppingCart className="mr-2 h-4 w-4" />
-                                        Add to Cart
-                                    </Button>
-                                </CardFooter>
-                            </Card>
+            <section
+                id="featured"
+                className="bg-accent py-12 md:py-24 lg:py-32"
+            >
+                <div className="container mx-auto grid place-content-center place-items-center gap-8 md:px-6">
+                    <div className="flex w-full items-center justify-center sm:justify-between">
+                        <Link
+                            href="/projects"
+                            className="group flex items-center text-2xl font-bold sm:hidden"
+                        >
+                            Featured Projects
+                            <span className="ml-1 transition-transform duration-100 group-hover:translate-x-1">
+                                <ChevronsRight />
+                            </span>
+                        </Link>
+                        <h2 className="hidden font-bold sm:flex md:text-4xl">
+                            Featured Projects
+                        </h2>
+                        <Link
+                            href="/projects"
+                            prefetch={true}
+                            className={cn(
+                                buttonVariants({ variant: "outline" }),
+                                "group hidden sm:flex",
+                            )}
+                        >
+                            View All
+                            <span className="ml-1 transition-transform duration-100 group-hover:translate-x-1">
+                                <ArrowRightIcon className="h-4 w-4" />
+                            </span>
+                        </Link>
+                    </div>
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+                        {featuredProjects?.map((ProjectData, index) => (
+                            <ProjectCard2 key={index} project={ProjectData} />
                         ))}
                     </div>
                 </div>
             </section>
 
             {/* Banner 1 */}
-            <section className="flex w-screen items-center justify-center bg-secondary py-12 text-white">
+            <section className="flex w-screen items-center justify-center py-12 text-white">
                 <div className="container px-4 text-center md:px-6">
                     <h2 className="mb-4 text-3xl font-bold">
                         Ready for Your Next Coding Challenge?
@@ -283,67 +274,55 @@ export default function HomePage() {
                         Explore our wide range of projects and take your skills
                         to the next level.
                     </p>
-                    <Button className="bg-white text-blue-500 hover:bg-gray-100">
+                    <Button>
                         <Link href={"/projects"}>Browse All Projects</Link>
                     </Button>
                 </div>
             </section>
 
             {/* Trending Projects Section */}
-            <section className="flex w-screen items-center justify-center bg-background py-12 md:py-24">
-                <div className="container px-4 md:px-6">
-                    <h2 className="mb-8 text-center text-3xl font-bold tracking-tighter sm:text-4xl">
-                        Trending Projects
-                    </h2>
+            <section
+                id="trending"
+                className="flex w-screen items-center justify-center bg-accent py-12 md:py-24"
+            >
+                <div className="container mx-auto grid place-items-center gap-8 md:px-6">
+                    <div className="flex w-full items-center justify-center sm:justify-between">
+                        <Link
+                            href="/projects"
+                            className="group flex items-center text-2xl font-bold sm:hidden"
+                        >
+                            Trending Projects
+                            <span className="ml-1 transition-transform duration-100 group-hover:translate-x-1">
+                                <ChevronsRight />
+                            </span>
+                        </Link>
+                        <h2 className="hidden font-bold sm:flex md:text-4xl">
+                            Trending Projects
+                        </h2>
+                        <Link
+                            href="/projects"
+                            prefetch={true}
+                            className={cn(
+                                buttonVariants({ variant: "outline" }),
+                                "group hidden sm:flex",
+                            )}
+                        >
+                            View All
+                            <span className="ml-1 transition-transform duration-100 group-hover:translate-x-1">
+                                <ArrowRightIcon className="h-4 w-4" />
+                            </span>
+                        </Link>
+                    </div>
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                        {trendingProjects.map((project) => (
-                            <Card
-                                key={project.id}
-                                className="flex h-full flex-col"
-                            >
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    width={300}
-                                    height={200}
-                                    className="h-48 w-full rounded-t-lg object-cover"
-                                />
-                                <CardHeader>
-                                    <CardTitle className="line-clamp-1">
-                                        {project.title}
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent className="flex-1">
-                                    <p className="line-clamp-2 text-muted-foreground">
-                                        {project.description}
-                                    </p>
-                                    <div className="mt-4 flex items-center">
-                                        <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                                        <span className="ml-2 text-sm">
-                                            {project.rating.toFixed(1)}
-                                        </span>
-                                    </div>
-                                    <div className="mt-2 inline-block rounded bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800">
-                                        {project.language}
-                                    </div>
-                                </CardContent>
-                                <CardFooter className="flex items-center justify-between">
-                                    <span className="text-2xl font-bold">
-                                        ₹{project.price.toFixed(2)}
-                                    </span>
-                                    <Button className="bg-green-500 hover:bg-green-600">
-                                        <ShoppingCart className="mr-2 h-4 w-4" />
-                                        Add to Cart
-                                    </Button>
-                                </CardFooter>
-                            </Card>
+                        {trendingProjects?.map((ProjectData, index) => (
+                            <ProjectCard2 key={index} project={ProjectData} />
                         ))}
                     </div>
                 </div>
             </section>
 
             {/* How It Works Section */}
-            <section className="flex w-screen items-center justify-center bg-secondary py-12 md:py-24">
+            <section className="flex w-screen items-center justify-center py-12 md:py-24">
                 <div className="container px-4 md:px-6">
                     <h2 className="mb-12 text-center text-3xl font-bold tracking-tighter sm:text-4xl">
                         How It Works
@@ -390,7 +369,7 @@ export default function HomePage() {
             </section>
 
             {/* Banner 2 */}
-            <section className="flex w-screen items-center justify-center bg-secondary py-12 text-white">
+            <section className="flex w-screen items-center justify-center bg-accent py-12 text-white">
                 <div className="container px-4 text-center md:px-6">
                     <h2 className="mb-4 text-3xl font-bold">
                         Accelerate Your Learning
@@ -399,67 +378,55 @@ export default function HomePage() {
                         Our projects come with detailed documentation and
                         explanations to boost your understanding.
                     </p>
-                    <Button className="bg-white text-pink-500 hover:bg-gray-100">
+                    <Button>
                         <Link href={"#"}>Learn More</Link>
                     </Button>
                 </div>
             </section>
 
             {/* Student Projects Section */}
-            <section className="flex w-screen items-center justify-center bg-background py-12 md:py-24">
-                <div className="container px-4 md:px-6">
-                    <h2 className="mb-8 text-center text-3xl font-bold tracking-tighter sm:text-4xl">
-                        Student Favorites
-                    </h2>
+            <section
+                id="trending"
+                className="flex w-screen items-center justify-center py-12 md:py-24"
+            >
+                <div className="container mx-auto grid place-items-center gap-8 md:px-6">
+                    <div className="flex w-full items-center justify-center sm:justify-between">
+                        <Link
+                            href="/projects"
+                            className="group flex items-center text-2xl font-bold sm:hidden"
+                        >
+                            Student Favorites
+                            <span className="ml-1 transition-transform duration-100 group-hover:translate-x-1">
+                                <ChevronsRight />
+                            </span>
+                        </Link>
+                        <h2 className="hidden font-bold sm:flex md:text-4xl">
+                            Student Favorites
+                        </h2>
+                        <Link
+                            href="/projects"
+                            prefetch={true}
+                            className={cn(
+                                buttonVariants({ variant: "outline" }),
+                                "group hidden sm:flex",
+                            )}
+                        >
+                            View All
+                            <span className="ml-1 transition-transform duration-100 group-hover:translate-x-1">
+                                <ArrowRightIcon className="h-4 w-4" />
+                            </span>
+                        </Link>
+                    </div>
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                         {studentProjects.map((project) => (
-                            <Card
-                                key={project.id}
-                                className="flex h-full flex-col"
-                            >
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    width={300}
-                                    height={200}
-                                    className="h-48 w-full rounded-t-lg object-cover"
-                                />
-                                <CardHeader>
-                                    <CardTitle className="line-clamp-1">
-                                        {project.title}
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent className="flex-1">
-                                    <p className="line-clamp-2 text-muted-foreground">
-                                        {project.description}
-                                    </p>
-                                    <div className="mt-4 flex items-center">
-                                        <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                                        <span className="ml-2 text-sm">
-                                            {project.rating.toFixed(1)}
-                                        </span>
-                                    </div>
-                                    <div className="mt-2 inline-block rounded bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800">
-                                        {project.language}
-                                    </div>
-                                </CardContent>
-                                <CardFooter className="flex items-center justify-between">
-                                    <span className="text-2xl font-bold">
-                                        ₹{project.price.toFixed(2)}
-                                    </span>
-                                    <Button className="bg-green-500 hover:bg-green-600">
-                                        <ShoppingCart className="mr-2 h-4 w-4" />
-                                        Add to Cart
-                                    </Button>
-                                </CardFooter>
-                            </Card>
+                            <ProjectCard2 project={project} />
                         ))}
                     </div>
                 </div>
             </section>
 
             {/* Testimonials Carousel Section */}
-            <section className="flex w-screen items-center justify-center bg-secondary md:py-24">
+            <section className="flex w-screen items-center justify-center bg-accent md:py-24">
                 <div className="container px-4 md:px-6">
                     <h2 className="mb-12 text-center text-3xl font-bold tracking-tighter sm:text-4xl">
                         What Our Customers Say
@@ -469,7 +436,7 @@ export default function HomePage() {
                             <div
                                 className="flex transition-transform duration-300 ease-in-out"
                                 style={{
-                                    transform: `translateX(-₹{currentSlide * 100}%)`,
+                                    transform: `translateX(-${currentSlide * 100}%)`,
                                 }}
                             >
                                 {testimonials.map((testimonial) => (
@@ -530,7 +497,7 @@ export default function HomePage() {
             </section>
 
             {/* Call to Action Section */}
-            <section className="flex w-screen items-center justify-center bg-secondary py-12 text-white md:py-24">
+            <section className="flex w-screen items-center justify-center py-12 text-white md:py-24">
                 <div className="container px-4 md:px-6">
                     <div className="flex flex-col items-center space-y-4 text-center">
                         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -540,8 +507,12 @@ export default function HomePage() {
                             Get access to premium computer science projects and
                             take your skills to the next level.
                         </p>
-                        <Button className="bg-white text-blue-600 hover:bg-gray-100">
-                            <Link href={"/projects"}>Start Browsing Now</Link>
+                        <Button asChild>
+                            <div>
+                                <Link href={"/projects"}>
+                                    Start Browsing Now
+                                </Link>
+                            </div>
                         </Button>
                     </div>
                 </div>
@@ -549,3 +520,50 @@ export default function HomePage() {
         </main>
     );
 }
+
+const ProjectCard2 = ({ project }: any) => {
+    return (
+        <Card
+            key={project.id}
+            className="relative flex h-full max-w-sm flex-col rounded-lg border bg-card shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl sm:max-w-xs"
+        >
+            <img
+                className="max-h-[240px] w-full rounded-lg rounded-bl-none rounded-br-none object-cover object-center sm:max-h-[200px]"
+                src={project.image}
+                alt={project.title}
+            />
+            <CardHeader>
+                <CardTitle className="line-clamp-1">{project.title}</CardTitle>
+            </CardHeader>
+            <CardContent className="flex-1">
+                <p className="line-clamp-2 text-muted-foreground">
+                    {project.description}
+                </p>
+                <div className="mt-4 flex items-center">
+                    <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                    <span className="ml-2 text-sm">
+                        {project.rating.toFixed(1)}
+                    </span>
+                </div>
+                <div className="mt-2 space-x-2 overflow-hidden">
+                    {project.language.map((language: any) => (
+                        <span className="rounded-md bg-muted px-2 py-1 text-[0.65rem] text-muted-foreground">
+                            {language}
+                        </span>
+                    ))}
+                    {project.language.map((language: any) => (
+                        <span className="rounded-md bg-muted px-2 py-1 text-[0.65rem] text-muted-foreground">
+                            {language}
+                        </span>
+                    ))}
+                </div>
+            </CardContent>
+            <CardFooter className="flex items-center justify-between">
+                <span className="text-2xl font-bold">
+                    ₹{project.price.toFixed(2)}
+                </span>
+                <Button>View Project</Button>
+            </CardFooter>
+        </Card>
+    );
+};

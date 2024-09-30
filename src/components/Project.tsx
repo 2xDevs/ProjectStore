@@ -4,89 +4,58 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { ProjectType } from "@/types/project";
 import { usePathname } from "next/navigation";
+import {
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import { Star } from "lucide-react";
 
-export const Project = ({ ProjectData }: { ProjectData: ProjectType }) => {
+export const Project = ({ project }: { project: ProjectType }) => {
     const pathname = usePathname();
 
     return (
-        <div className="relative rounded-lg max-w-sm sm:max-w-xs border bg-card shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-2">
-            <Link
-                href={`/projects/${ProjectData.id}`}
-                className="absolute inset-0 z-10"
-                prefetch={false}
-            >
-                <span className="sr-only">View Project</span>
-            </Link>
-            <div className="aspect-[16/10] relative w-full rounded-lg">
-                <Image
-                    className="object-cover object-center w-full max-h-[240px] sm:max-h-[200px] rounded-lg rounded-bl-none rounded-br-none"
-                    src={ProjectData.image}
-                    alt={ProjectData.title}
-                    width={854}
-                    height={480}
-                />
-                <h3 className="absolute bottom-0 px-2 pb-2 text-white [text-shadow:1px_1px_20px_black,_0_0_0.2em_black,_0_0_2em_black] w-full font-bold text-xl">
-                    {ProjectData.title}
-                </h3>
-            </div>
-
-            <div className="p-4">
-                <div className="mt-2 flex flex-1 gap-2 overflow-hidden">
-                    {ProjectData.categories.map((category, index) => (
-                        <span
-                            key={index}
-                            className="bg-muted text-muted-foreground px-2 py-1 rounded-md text-[0.65rem]"
-                        >
-                            {category}
+        <Card
+            key={project.id}
+            className="relative flex h-full max-w-sm flex-col rounded-lg border bg-card shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl sm:max-w-xs"
+        >
+            <img
+                className="max-h-[240px] w-full rounded-lg rounded-bl-none rounded-br-none object-cover object-center sm:max-h-[200px]"
+                src={project.image}
+                alt={project.title}
+            />
+            <CardHeader>
+                <CardTitle className="line-clamp-1">{project.title}</CardTitle>
+            </CardHeader>
+            <CardContent className="flex-1">
+                <p className="line-clamp-2 text-muted-foreground">
+                    {project.description ? project.description : ""}
+                </p>
+                <div className="mt-4 flex items-center">
+                    <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                    <span className="ml-2 text-sm">4.5</span>
+                </div>
+                <div className="mt-2 space-x-2 overflow-hidden">
+                    {project.categories.map((language: any) => (
+                        <span className="rounded-md bg-muted px-2 py-1 text-[0.65rem] text-muted-foreground">
+                            {language}
                         </span>
                     ))}
-                    {ProjectData.languages.map((language, index) => (
-                        <span
-                            key={index}
-                            className="bg-muted text-muted-foreground px-2 py-1 rounded-md text-[0.65rem]"
-                        >
+                    {project.categories.map((language: any) => (
+                        <span className="rounded-md bg-muted px-2 py-1 text-[0.65rem] text-muted-foreground">
                             {language}
                         </span>
                     ))}
                 </div>
-                <div className="flex justify-between items-center mt-4">
-                    {ProjectData.price && (
-                        <h4 className="font-semibold text-lg md:text-xl">
-                            ₹{(ProjectData.price / 100)}
-                        </h4>
-                    )}
-
-                    {pathname === "/" || pathname === "/projects" ? (
-                        <>
-                            <Button
-                                className="text-xs h-fit px-3 sm:h-full sm:text-sm sm:px-4"
-                                // onClick={handleRemoveFromCart}
-                            >
-                                View Project
-                            </Button>
-                        </>
-                    ) : ProjectData.price ? (
-                        // isInCart ? (
-                        //     <Button
-                        //         className="z-20 bg-destructive"
-                        //         // onClick={handleRemoveFromCart}
-                        //     >
-                        //         Remove from cart
-                        //     </Button>
-                        // ) : (
-                        //     <Button
-                        //         className="z-20"
-                        //         // onClick={handleAddToCart}
-                        //     >
-                        //         Add to cart
-                        //     </Button>
-                        // )
-                        <></>
-                    ) : (
-                        <Button className="z-20 w-full">Download</Button>
-                    )}
-                </div>
-            </div>
-        </div>
+            </CardContent>
+            <CardFooter className="flex items-center justify-between">
+                <span className="text-2xl font-bold">
+                    ₹{project.price?.toFixed(2)}
+                </span>
+                <Button>View Project</Button>
+            </CardFooter>
+        </Card>
     );
 };

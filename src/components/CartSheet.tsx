@@ -32,8 +32,15 @@ export const Cartsheet = () => {
         <>
             <Sheet>
                 <SheetTrigger asChild>
-                    <Button size={"icon"} variant={"ghost"}>
+                    <Button
+                        size={"icon"}
+                        className="relative"
+                        variant={"ghost"}
+                    >
                         <Icons.emptyCart className="h-6 w-6 sm:h-8 sm:w-8" />
+                        <span className="absolute right-0 top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-xs text-white">
+                            {items.length}
+                        </span>
                         <span className="sr-only">Toggle Cart Menu</span>
                     </Button>
                 </SheetTrigger>
