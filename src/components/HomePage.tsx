@@ -28,7 +28,6 @@ export default function HomePage({
 }: {
     CarouselProjects: ProjectsType | null;
 }) {
-    console.log(CarouselProjects);
     const [currentSlide, setCurrentSlide] = useState(0);
 
     const featuredProjects = [
@@ -193,7 +192,7 @@ export default function HomePage({
             {/* Hero Section */}
             <section
                 id="hero"
-                className="pt-12 sm:flex sm:min-h-[calc(100dvh-4.6rem)] sm:items-center sm:pt-0 lg:block xl:pt-40"
+                className="py-12 sm:flex sm:min-h-[calc(100dvh-4.6rem)] sm:items-center sm:py-0"
             >
                 <div className="mx-auto flex max-w-screen-2xl px-4">
                     <div className="mx-auto w-full sm:w-3/4 md:w-10/12 xl:w-2/5">
@@ -226,7 +225,7 @@ export default function HomePage({
             {/* Featured Projects Section */}
             <section
                 id="featured"
-                className="bg-accent py-12 md:py-24 lg:py-32"
+                className="bg-accent px-2 py-12 md:py-24 lg:py-32"
             >
                 <div className="container mx-auto grid place-content-center place-items-center gap-8 md:px-6">
                     <div className="flex w-full items-center justify-center sm:justify-between">
@@ -283,9 +282,9 @@ export default function HomePage({
             {/* Trending Projects Section */}
             <section
                 id="trending"
-                className="flex w-screen items-center justify-center bg-accent py-12 md:py-24"
+                className="bg-accent px-2 py-12 md:py-24 lg:py-32"
             >
-                <div className="container mx-auto grid place-items-center gap-8 md:px-6">
+                <div className="container mx-auto grid place-content-center place-items-center gap-8 md:px-6">
                     <div className="flex w-full items-center justify-center sm:justify-between">
                         <Link
                             href="/projects"
@@ -313,8 +312,8 @@ export default function HomePage({
                             </span>
                         </Link>
                     </div>
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                        {trendingProjects?.map((ProjectData, index) => (
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+                        {featuredProjects?.map((ProjectData, index) => (
                             <ProjectCard2 key={index} project={ProjectData} />
                         ))}
                     </div>
@@ -385,23 +384,20 @@ export default function HomePage({
             </section>
 
             {/* Student Projects Section */}
-            <section
-                id="trending"
-                className="flex w-screen items-center justify-center py-12 md:py-24"
-            >
-                <div className="container mx-auto grid place-items-center gap-8 md:px-6">
+            <section id="trending" className="px-2 py-12 md:py-24 lg:py-32">
+                <div className="container mx-auto grid place-content-center place-items-center gap-8 md:px-6">
                     <div className="flex w-full items-center justify-center sm:justify-between">
                         <Link
                             href="/projects"
                             className="group flex items-center text-2xl font-bold sm:hidden"
                         >
-                            Student Favorites
+                            Student Projects
                             <span className="ml-1 transition-transform duration-100 group-hover:translate-x-1">
                                 <ChevronsRight />
                             </span>
                         </Link>
                         <h2 className="hidden font-bold sm:flex md:text-4xl">
-                            Student Favorites
+                            Student Projects
                         </h2>
                         <Link
                             href="/projects"
@@ -417,17 +413,17 @@ export default function HomePage({
                             </span>
                         </Link>
                     </div>
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                        {studentProjects.map((project) => (
-                            <ProjectCard2 project={project} />
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+                        {studentProjects?.map((ProjectData, index) => (
+                            <ProjectCard2 key={index} project={ProjectData} />
                         ))}
                     </div>
                 </div>
             </section>
 
             {/* Testimonials Carousel Section */}
-            <section className="flex w-screen items-center justify-center bg-accent md:py-24">
-                <div className="container px-4 md:px-6">
+            <section className="bg-accent py-12 md:py-24">
+                <div className="container mx-auto px-4 md:px-6">
                     <h2 className="mb-12 text-center text-3xl font-bold tracking-tighter sm:text-4xl">
                         What Our Customers Say
                     </h2>
