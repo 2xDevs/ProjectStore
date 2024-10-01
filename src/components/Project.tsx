@@ -51,10 +51,16 @@ export const Project = ({ project }: { project: ProjectType }) => {
                 </div>
             </CardContent>
             <CardFooter className="flex items-center justify-between">
-                <span className="text-2xl font-bold">
-                    ₹{project.price?.toFixed(2)}
-                </span>
-                <Button>View Project</Button>
+                {project.price ? (
+                    <>
+                        <span className="text-2xl font-bold">
+                            ₹{(project.price / 100).toFixed(2)}
+                        </span>
+                        <Button>View Project</Button>
+                    </>
+                ) : (
+                    <Button className="w-full">Download</Button>
+                )}
             </CardFooter>
         </Card>
     );

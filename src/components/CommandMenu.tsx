@@ -90,20 +90,17 @@ export function CommandMenu({ Projects }: { Projects: ProjectsType }) {
                     className="p-2"
                     onClick={() => setDialogOpen(true)}
                 >
-                    <div className="hidden items-center gap-2 sm:flex">
-                        <MagnifyingGlassIcon className="h-[1.2rem] w-[1.2rem]" />
+                    <div className="items-center gap-2 sm:flex">
+                        <MagnifyingGlassIcon className="h-6 w-6 sm:h-[1.2rem] sm:w-[1.2rem]" />
                         <span className="mr-2 hidden lg:block">
                             Search Projects...
                         </span>
                         <span className="mr-2 hidden sm:block lg:hidden">
                             Search...
                         </span>
-                        <kbd className="rounded-sm bg-white/15 p-1.5 text-xs leading-3">
+                        <kbd className="hidden rounded-sm bg-white/15 p-1.5 text-xs leading-3 sm:block">
                             {shortcut}
                         </kbd>
-                    </div>
-                    <div className="block sm:hidden">
-                        <MagnifyingGlassIcon className="h-6 w-6" />
                     </div>
                 </Button>
                 <DialogContent className="max-w-2xl gap-0 p-0">
